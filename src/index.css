@@ -6,4 +6,5 @@
 
 :root {
     background: url('../../common/images/background.jpg') no-repeat;
+    min-width: 980px;
 }

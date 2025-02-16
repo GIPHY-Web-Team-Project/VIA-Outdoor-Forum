@@ -46,18 +46,18 @@ export default function App()  {
 
     return (
       <BrowserRouter>
-          <Header></Header>
-          <div id="body-id">
-              <AppContext.Provider value={{ ...appState, setAppState }}>
+          <AppContext.Provider value={{ ...appState, setAppState }}>
+              <Header></Header>
+              <div id="body-id">
                   <Routes>
                       <Route path="/" element={<Home />} />
                       <Route path="/register" element={<Register />} />
                       <Route path="/login" element={<Login />} />
                       <Route path="*" element={<NotFound/>} />          
                   </Routes>
-              </AppContext.Provider>
-          </div>
-          <Footer></Footer>
+              </div>
+              <Footer></Footer>
+          </AppContext.Provider>
       </BrowserRouter>
     )
 }

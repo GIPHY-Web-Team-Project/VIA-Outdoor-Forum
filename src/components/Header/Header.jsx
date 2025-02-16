@@ -1,5 +1,11 @@
 import { NavLink, useNavigate } from "react-router-dom"
+import { AppContext } from "../../store/app.context"
+import { useContext } from "react"
+import { signOut } from "firebase/auth";
+import { auth } from "../../config/firebase-config";
 import './Header.css'
+import { useReducer } from "react";
+
 export default function Header() {
     const navigate = useNavigate();
 
@@ -11,11 +17,32 @@ export default function Header() {
         navigate('/login');
     }
 
+    const { user, userData, setAppState } = useContext(AppContext);
+    
+    const logout = () => {
+      signOut(auth)
+        .then(() => {
+          setAppState({
+            user: null,
+            userData: null
+          });
+          navigate('/login');
+        })
+        .catch((error) => {
+          console.error(error.message);
+        })
+    }
+    
+
     return (
         <header>
             <div className="button-container">
-                <button id="btn-register" onClick={ handleRegister }>Register</button>
-                <button onClick={ handleLogin }>Login</button>
+            {!user && <button id="btn-register" onClick={ handleRegister }>Register</button>}
+            {!user && <button onClick={ handleLogin }>Login</button>}
+            {user && <button onClick={logout} id="btn-logout">Logout</button>}
+            </div>
+            <div className="welcome-container">
+                {userData && <span>Welcome, {userData.firstName}!</span>}
             </div>
         </header>
     )
