@@ -1,15 +1,16 @@
 import React from 'react';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import Home from './views/Home/Home';
-import NotFound from './components/NotFound/NotFound';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Register from "./views/Register/Register";
 import { AppContext } from "./store/app.context";
 import { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./config/firebase-config";
 import { getUserData } from "./services/users.service";
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import Home from './views/Home/Home';
+import NotFound from './components/NotFound/NotFound';
+import Register from "./views/Register/Register";
+import Login from "./views/Login/Login";
 import './App.css';
 
 export default function App()  {
@@ -51,6 +52,7 @@ export default function App()  {
                   <Routes>
                       <Route path="/" element={<Home />} />
                       <Route path="/register" element={<Register />} />
+                      <Route path="/login" element={<Login />} />
                       <Route path="*" element={<NotFound/>} />          
                   </Routes>
               </AppContext.Provider>
