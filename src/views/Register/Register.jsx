@@ -5,6 +5,7 @@ import { createUserHandle, getUserByEmail } from '../../services/users.service';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../config/firebase-config';
 import { nameCheck } from '../../utils/nameUtils';
+import './Register.css';
 
 export default function Register () {
     const { setAppState } = useContext(AppContext);
@@ -61,7 +62,7 @@ export default function Register () {
     }
     
     return (
-        <div>
+        <div id="register-form-id">
         <h3>Register</h3>
         <div>
             <label htmlFor="firstName">First name: </label>
@@ -79,7 +80,7 @@ export default function Register () {
             <label htmlFor="password">Password: </label>
             <input value={user.password} onChange={updateUser('password')} type="password" name="password" id="password" />
             <br /><br />
-            <button onClick={register}>Register</button>
+            <button onClick={register} id="btn-register-form">Register</button>
         </div>
         </div>
     );
