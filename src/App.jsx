@@ -14,6 +14,7 @@ import Login from "./views/Login/Login";
 import SingleUser from "./views/SingleUser/SingleUser";
 import EditUser from "./views/EditUser/EditUser";
 import './App.css';
+import CreatePost from './views/CreatePost/CreatePost';
 
 export default function App() {
   const [appState, setAppState] = useState({
@@ -55,6 +56,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/create-post" element={<CreatePost />} />
             <Route path="/users/:uid/edit" element={<EditUser />} />
             <Route path="/users/:uid" element={<SingleUser />} />
             <Route path="*" element={<NotFound />} />
