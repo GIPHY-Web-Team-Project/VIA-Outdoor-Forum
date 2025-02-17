@@ -40,9 +40,11 @@ export default function Header() {
             {!user && <button id="btn-register" onClick={ handleRegister }>Register</button>}
             {!user && <button onClick={ handleLogin }>Login</button>}
             {user && <button onClick={logout} id="btn-logout">Logout</button>}
+            {user && <NavLink to={`/users/${user.uid}`} id="btn-profile">Profile</NavLink>}
             </div>
             <div className="welcome-container">
                 {userData && <span>Welcome, {userData.firstName}!</span>}
+                
             </div>
         </header>
     )

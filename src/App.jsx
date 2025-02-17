@@ -11,6 +11,8 @@ import Home from './views/Home/Home';
 import NotFound from './components/NotFound/NotFound';
 import Register from "./views/Register/Register";
 import Login from "./views/Login/Login";
+import SingleUser from "./views/SingleUser/SingleUser";
+import EditUser from "./views/EditUser/EditUser";
 import './App.css';
 
 export default function App()  {
@@ -53,6 +55,8 @@ export default function App()  {
                       <Route path="/" element={<Home />} />
                       <Route path="/register" element={<Register />} />
                       <Route path="/login" element={<Login />} />
+                      <Route path="/users/:uid/edit" element={<EditUser />} />
+                      <Route path="/users/:uid" element={<SingleUser />} />
                       <Route path="*" element={<NotFound/>} />          
                   </Routes>
               </div>
