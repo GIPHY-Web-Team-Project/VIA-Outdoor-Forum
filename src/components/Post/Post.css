@@ -1,0 +1,25 @@
+.post {
+  display: flex;
+align-items: center;
+justify-content: space-between;
+width: 75vw;
+margin-bottom: 2rem;
+}
+
+.post-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  border-bottom: none;
+}
+
+.post-btn {
+  font-size: 0.85rem;
+  color: #4e7800;
+  border: none;
+  background: none;
+  cursor: pointer;
+  height: fit-content;
+  width: fit-content;
+}

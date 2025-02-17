@@ -15,53 +15,53 @@ import SingleUser from "./views/SingleUser/SingleUser";
 import EditUser from "./views/EditUser/EditUser";
 import './App.css';
 
-export default function App()  {
-    const [appState, setAppState] = useState({
-        user: null,
-        userData: null,
-    });
+export default function App() {
+  const [appState, setAppState] = useState({
+    user: null,
+    userData: null,
+  });
 
-    const [user, loading, error] = useAuthState(auth);
-    
-      if (appState.user !== user) {
+  const [user, loading, error] = useAuthState(auth);
+
+  if (appState.user !== user) {
+    setAppState({
+      ...appState,
+      user,
+    });
+  }
+
+  useEffect(() => {
+    if (!user) return;
+
+    getUserData(appState.user.uid)
+      .then(data => {
+        const userData = data[Object.keys(data)[0]];
         setAppState({
           ...appState,
-          user,
+          userData,
         });
-      }
-    
-      useEffect(() => {
-        if(!user) return;
-    
-        getUserData(appState.user.uid)
-        .then(data => {
-          const userData = data[Object.keys(data)[0]];
-          setAppState({
-            ...appState,
-            userData,
-          });
-        })
-        .catch(error => {
-          console.log(error);
-        });
-      }, [user]);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, [user]);
 
-    return (
-      <BrowserRouter>
-          <AppContext.Provider value={{ ...appState, setAppState }}>
-              <Header></Header>
-              <div id="body-id">
-                  <Routes>
-                      <Route path="/" element={<Home />} />
-                      <Route path="/register" element={<Register />} />
-                      <Route path="/login" element={<Login />} />
-                      <Route path="/users/:uid/edit" element={<EditUser />} />
-                      <Route path="/users/:uid" element={<SingleUser />} />
-                      <Route path="*" element={<NotFound/>} />          
-                  </Routes>
-              </div>
-              <Footer></Footer>
-          </AppContext.Provider>
-      </BrowserRouter>
-    )
+  return (
+    <BrowserRouter>
+      <AppContext.Provider value={{ ...appState, setAppState }}>
+        <Header></Header>
+        <div id="body-id">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/users/:uid/edit" element={<EditUser />} />
+            <Route path="/users/:uid" element={<SingleUser />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
+        <Footer></Footer>
+      </AppContext.Provider>
+    </BrowserRouter>
+  )
 }

@@ -1,11 +1,20 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Post from "../../components/Post/Post";
+import "./Home.css";
+import { useNavigate } from "react-router-dom";
+import { getAllPosts } from "../../services/posts-services";
 
 export default function Home() {
-  useEffect(() => {}, []);
+  const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getAllPosts()
+
+  }, []);
 
   return (
-    <div>
+    <div className="home-container">
       <h3>Home</h3>
       <Post />
     </div>

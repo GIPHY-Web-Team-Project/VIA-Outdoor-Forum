@@ -20,7 +20,7 @@ header .button-container {
   margin-right: 1rem;
 }
 
-button {
+#btn-login, #btn-logout {
   background-color: #4e7800;
   color: white;
   border: none;
