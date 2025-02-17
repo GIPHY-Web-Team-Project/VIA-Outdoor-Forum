@@ -12,18 +12,36 @@
 }
 
 #btn-register-form {
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto;
     margin-top: 1rem;
-    width: 100%;
+    background-color:  #4e7800;
+    border-radius: 0.25rem;
+    border: none;
+    color: white;
+    padding: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    cursor: pointer;
+    text-align: center;
 }
 
-h3 {
+#register-text {
+    font-size: 2rem;
+    border: 1px solid black;
+    padding: 1rem;
+    margin-right: 20px;
     margin-bottom: 2rem;
-    font-size: 34px;
-    color: #4e7800;
-    border-bottom: 0.2rem solid #4e7800;
-    padding-bottom: 0.5rem;
+    color: black;
+    width: 150px;
+    text-decoration: none;
+    text-align: center;
 }
 
-input {
+.register-input-form {
     width: 100%;
+    border: none;
+    border-bottom: 2px solid  #000;
+    font-size: 18px;
 }

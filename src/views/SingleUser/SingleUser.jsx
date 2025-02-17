@@ -38,25 +38,35 @@ export const SingleUser = () => {
 
 
     return (
-        <div>
+        <div id="single-user-container">
             <div id="user-details-container">
-                <h1>Profile Details</h1>
+                <h1 id="details-text-form">Profile Details</h1>
                 {user.userData && (
                     <div>
                         <div id="profile-picture">
-                            <img src={user.userData.profilePicture} alt="Avatar" />
+                            {user.userData.profilePicture ? (
+                                <img className="img-avatar" src={user.userData.profilePicture} alt="Avatar" />
+                            ) : (
+                                <img className="img-avatar" src="../../common/images/avatar.jpg" alt="Avatar" />
+                            )}
                         </div>
                         <div id="user-details">
-                            <h3>Username: {user.userData.username}</h3>
-                            <h3>Email: {user.userData.email}</h3>
-                            <h3>First name:  {user.userData.firstName}</h3>
-                            <h3>Last name: {user.userData.lastName}</h3>
+                            <h3 className="details-label-user">Username: </h3>
+                            <label className="details-value-user">{user.userData.username}</label>
+                            <h3 className="details-label-user">Email: </h3>
+                            <label className="details-value-user">{user.userData.email}</label>
+                            <h3 className="details-label-user">First name:  </h3>
+                            <label className="details-value-user">{user.userData.firstName}</label>
+                            <h3 className="details-label-user">Last name: </h3>
+                            <label className="details-value-user">{user.userData.lastName}</label>
                         </div>
                     </div>
                 )}
             </div>
-            <button onClick={() => navigate(-1)}>Back</button>
-            <button onClick={ handleEditUser }>Edit</button>
+            <div id="btn-details-container">
+                <button className="btn-details-controler" onClick={() => navigate(-1)}>Back</button>
+                <button className="btn-details-controler" onClick={ handleEditUser }>Edit</button>
+            </div>
         </div>
     );
 }

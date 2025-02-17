@@ -20,7 +20,7 @@ export const createUserHandle = async (email, uid, username, firstName, lastName
     firstName,
     lastName,
     createdOn: new Date().toString(),
-    profilePicture: '../common/avatar.jpg',
+    profilePicture: '',
   };
 
   await set(ref(db, `users/${encodedEmail}`), user);

@@ -61,22 +61,22 @@ export default function Register () {
     
     return (
         <div id="register-form-id">
-        <h3>Register</h3>
+        <h3 id="register-text">Register</h3>
         <div>
-            <label htmlFor="firstName">First name: </label>
-            <input value={user.firstName} onChange={updateUser('firstName')} type="text" name="firstName" id="firstName" />
+            <label className="register-label-form" htmlFor="firstName">First name: </label>
+            <input className="register-input-form" value={user.firstName} onChange={updateUser('firstName')} type="text" name="firstName" id="firstName" />
             <br /><br />
-            <label htmlFor="lastName">Last name: </label>
-            <input value={user.lastName} onChange={updateUser('lastName')} type="text" name="lastName" id="lastName" />
+            <label className="register-label-form" htmlFor="lastName">Last name: </label>
+            <input className="register-input-form" value={user.lastName} onChange={updateUser('lastName')} type="text" name="lastName" id="lastName" />
             <br /><br />
-            <label htmlFor="username">Username: </label>
-            <input value={user.username} onChange={updateUser('username')} type="text" name="username" id="username" placeholder='optional'/>
+            <label className="register-label-form" htmlFor="username">Username: </label>
+            <input className="register-input-form" value={user.username} onChange={updateUser('username')} type="text" name="username" id="username" placeholder='optional'/>
             <br /><br />
-            <label htmlFor="email">Email: </label>
-            <input value={user.email} onChange={updateUser('email')} type="text" name="email" id="email"/>
+            <label className="register-label-form" htmlFor="email">Email: </label>
+            <input className="register-input-form" value={user.email} onChange={updateUser('email')} type="text" name="email" id="email"/>
             <br /><br />
-            <label htmlFor="password">Password: </label>
-            <input value={user.password} onChange={updateUser('password')} type="password" name="password" id="password" />
+            <label className="register-label-form" htmlFor="password">Password: </label>
+            <input className="register-input-form" value={user.password} onChange={updateUser('password')} type="password" name="password" id="password" />
             <br /><br />
             <button onClick={register} id="btn-register-form">Register</button>
         </div>

@@ -10,19 +10,23 @@ export const EditUser = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const { uid } = useParams();
-    const [file, setFile] = useState(null);
-    const storage = getStorage();
-    
+    const [avatar, setAvatar] = useState(null);
+
     const [user, setUser] = useState({
         user: { uid },
         userData: location.state?.userData || null,
     });
 
-
-    const handleAvatarChange = (e) => {
-        console.log(e.target.files);
-        setFile(URL.createObjectURL(e.target.files[0]));
-    }
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setAvatar(reader.result);  // The base64-encoded image
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -36,30 +40,18 @@ export const EditUser = () => {
     };
 
     const handleUpdate = () => {
-        if (file) {
-            const storageRef = ref(storage, `profilePictures/${uid}`);
-            uploadBytes(storageRef, file).then((snapshot) => {
-                getDownloadURL(snapshot.ref).then((downloadURL) => {
-                    updateUserData(uid, { ...user.userData, profilePicture: downloadURL })
-                        .then(() => {
-                            console.log('User updated successfully');
-                            navigate(`/users/${uid}`);
-                        })
-                        .catch(error => {
-                            console.log(error);
-                        });
-                });
-            });
-        } else {
-            updateUserData(uid, user.userData)
-                .then(() => {
-                    console.log('User updated successfully');
-                    navigate(`/users/${uid}`);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+        const updatedData = { ...user.userData };
+        if (avatar) {
+            updatedData.profilePicture = avatar;
         }
+        updateUserData(uid, updatedData)
+            .then(() => {
+                console.log('User updated successfully');
+                navigate(`/users/${uid}`);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     };
 
     useEffect(() => {
@@ -82,24 +74,21 @@ export const EditUser = () => {
             });
     }, [uid, user.userData]);
 
-
-
-
     return (
-        <div>
-            <h1>Update profile:</h1>
-            <div id="edit-user-details-container">
+        <div id="edit-user-details-container"> 
+            <h1 id="details-edit-form">Update profile:</h1>
+            <div id="edit-user-content">
                 {user.userData && (
                     <div>
                         <div id="profile-picture-edit">
-                            <h3>Profile Picture: </h3>
-                            <img src={user.userData.profilePicture} alt="Avatar" />
-                            <input type="file" onChange={handleAvatarChange}/>
+                            <h3 className="input-label-edit-form">Profile Picture: </h3>
+                            {user.userData.profilePicture && <img id="user-avatar-edit" src={user.userData.profilePicture} alt="Avatar" />}
+                            <input type="file" onChange={handleImageChange} id="file-selector" accept="image/*"/>
                         </div>
                         <div id="user-details-edit">
                             <div className="row">
-                                <h3>Username: </h3>
-                                <input 
+                                <h3 className="input-label-edit-form">Username: </h3>
+                                <input className="input-edit-form" 
                                     type="text" 
                                     name="username"
                                     value={user.userData.username} 
@@ -107,12 +96,12 @@ export const EditUser = () => {
                                 />
                             </div>
                             <div className="row">
-                                <h3>Email: </h3>
-                                <label>{user.userData.email}</label>
+                                <h3 className="input-label-edit-form">Email: </h3>
+                                <label className="input-edit-form">{user.userData.email}</label>
                             </div>
                             <div className="row">
-                                <h3>First name: </h3>
-                                <input 
+                                <h3 className="input-label-edit-form">First name: </h3>
+                                <input className="input-edit-form" 
                                     type="text" 
                                     name="firstName"
                                     value={user.userData.firstName} 
@@ -120,8 +109,8 @@ export const EditUser = () => {
                                 />
                             </div>
                             <div className="row">
-                                <h3>Last name: </h3>
-                                <input 
+                                <h3 className="input-label-edit-form">Last name: </h3>
+                                <input className="input-edit-form" 
                                     type="text" 
                                     name="lastName"
                                     value={user.userData.lastName} 
@@ -132,9 +121,10 @@ export const EditUser = () => {
                     </div>
                 )}
             </div>
-            <button onClick={ handleUpdate }>Save</button>
-            <button onClick={() => navigate(-1)}>Cancel</button>
-
+            <div id="button-container-edit">
+                <button className="btn-control-edit" onClick={ handleUpdate }>Save</button>
+                <button className="btn-control-edit" onClick={() => navigate(-1)}>Cancel</button>
+            </div>
         </div>
     );
 }

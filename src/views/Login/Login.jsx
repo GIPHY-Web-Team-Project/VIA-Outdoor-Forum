@@ -46,13 +46,13 @@ const updateUser = (prop) => (e) => {
 
   return (
     <div id="login-form-id">
-      <h3>Login</h3>
+      <h3 id="login-intro-form">Login</h3>
       <div>
-        <label htmlFor="email">Email: </label>
-        <input value={user.email} onChange={updateUser('email')} type="text" name="email" id="email" />
+        <label className="login-label-form" htmlFor="email">Email: </label>
+        <input className="login-input-form" value={user.email} onChange={updateUser('email')} type="text" name="email" id="email" />
         <br /><br />
-        <label htmlFor="password">Password: </label>
-        <input value={user.password} onChange={updateUser('password')} type="password" name="password" id="password" />
+        <label className="login-label-form" htmlFor="password">Password: </label>
+        <input className="login-input-form" value={user.password} onChange={updateUser('password')} type="password" name="password" id="password" />
         <button onClick={login} id="btn-login-form">Login</button>
       </div>
     </div>
