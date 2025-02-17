@@ -4,11 +4,13 @@ header {
   align-items: flex-start;
   justify-content: flex-end;
   position: relative;
-  height: 45vh;
   margin: 0;
   background: url("../../common/images/Header.jpg") no-repeat;
-  background-size: 100vw;
+  background-size: cover;
+  background-position: center;
   border: none;
+  height: 50vh;
+  min-width: 100%;
 }
 
 header .button-container {
@@ -25,10 +27,33 @@ button {
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   cursor: pointer;
+  background-color: #4e7800;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
 }
 
 #btn-register {
   background-color: transparent;
   color: #4e7800;
   text-decoration: underline;
+}
+
+.welcome-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+
+span {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
