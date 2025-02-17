@@ -37,11 +37,9 @@ export default function Register () {
         return createUserWithEmailAndPassword(auth, user.email, user.password);
         })
         .then(userCredential => {
-            console.log('User created: ', userCredential.user);
             const username = user.username || `user_${userCredential.user.uid}`;
-            return createUserHandle(username, userCredential.user.uid, user.email, user.firstName, user.lastName)
+            return createUserHandle(user.email, userCredential.user.uid, username, user.firstName, user.lastName)
         .then(() => {
-            console.log('User handle created!')
             setAppState({
             user: userCredential.user,
             userData: null,
