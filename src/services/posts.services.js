@@ -32,3 +32,21 @@ export const getAllPosts = async () => {
 }
 
 export const getPostByID = async () => { }
+
+export const likePost = async (handle, postId) => {
+    const updatedPost = {
+        [`posts/${postId}/likedBy/${handle}`]: true,
+        [`users/${handle}/likedPosts/${postId}`]: true,
+    }
+
+    return update(ref(db), updatedPost);
+}
+
+export const unlikePost = async (handle, postId) => {
+    const updatedPost = {
+        [`posts/${postId}/likedBy/${handle}`]: null,
+        [`users/${handle}/likedPosts/${postId}`]: null,
+    }
+
+    return update(ref(db), updatedPost);
+}

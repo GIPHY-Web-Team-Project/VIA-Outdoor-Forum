@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { uploadPost } from "../../services/posts-services";
+import { uploadPost } from "../../services/posts.services";
 import { AppContext } from "../../store/app.context";
 
 export default function CreatePost() {
@@ -22,6 +22,17 @@ export default function CreatePost() {
             alert('Please fill all fields');
             return;
         }
+
+        if (post.title.trim().length < 16 || post.title.trim().length > 64) {
+            alert('Title must be between 16 and 64 characters');
+            return;
+        }
+
+        if (post.content.trim().length < 32 || post.content.trim().length > 8192) {
+            alert('Title must be between 32 and 8192 characters');
+            return;
+        }
+
 
         try {
             await uploadPost(userData.username, post.title, post.content);
