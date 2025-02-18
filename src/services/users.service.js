@@ -1,6 +1,7 @@
-import { get, set, ref, query, equalTo, orderByChild, update } from 'firebase/database';
-import { db } from '../config/firebase-config';
+import { get, set, ref, query, equalTo, orderByChild, update, remove } from 'firebase/database';
+import { db, auth } from '../config/firebase-config';
 import { encodeEmail } from '../utils/emailUtils';
+import { deleteUser } from 'firebase/auth';
 
 export const getUserByEmail = async (email) => {
   const encodedEmail = encodeEmail(email);
@@ -40,5 +41,17 @@ export const updateUserData = async (uid, updatedData) => {
     await update(ref(db, `users/${userKey}`), updatedData);
   } else {
     throw new Error('User not found');
+  }
+};
+
+export const deleteUserAccount = async () => {
+  const user = auth.currentUser;
+  if (user) {
+    const encodedEmail = encodeEmail(user.email);
+    const userRef = ref(db, `users/${encodedEmail}`);
+    await remove(userRef);
+    await deleteUser(user);
+  } else {
+    throw new Error('No user is currently signed in.');
   }
 };

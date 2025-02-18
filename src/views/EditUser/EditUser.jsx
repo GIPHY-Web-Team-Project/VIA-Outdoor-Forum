@@ -2,7 +2,7 @@ import React from 'react';
 import { ref, uploadBytes, getDownloadURL, getStorage} from 'firebase/storage';
 import SingleUser from '../SingleUser/SingleUser';
 import { useParams, useNavigate, useLocation} from 'react-router-dom';
-import { getUserData, updateUserData } from '../../services/users.service';
+import { getUserData, updateUserData, deleteUserAccount } from '../../services/users.service';
 import { useEffect, useState } from 'react';
 import './EditUser.css';
 
@@ -53,6 +53,17 @@ export const EditUser = () => {
                 console.log(error);
             });
     };
+
+    const handleDelete = () => {
+        deleteUserAccount()
+            .then(() => {
+                console.log('User deleted successfully');
+                navigate('/register');
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
 
     useEffect(() => {
         if (!uid || user.userData) return;
@@ -124,6 +135,9 @@ export const EditUser = () => {
             <div id="button-container-edit">
                 <button className="btn-control-edit" onClick={ handleUpdate }>Save</button>
                 <button className="btn-control-edit" onClick={() => navigate(-1)}>Cancel</button>
+            </div>
+            <div id="btn-delete-account">
+                <button id="btn-control-delete" onClick={handleDelete}>Delete Account</button>
             </div>
         </div>
     );
