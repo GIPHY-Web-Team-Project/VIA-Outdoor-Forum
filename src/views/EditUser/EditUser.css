@@ -4,8 +4,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 1rem;
-    padding: 1rem;
+    margin: 0;
+    padding: 0;
     border: 1px solid #000;
     border-radius: 10px;
     width: 100%;
@@ -56,6 +56,7 @@
     padding: 1rem;
     color: black;
     width: 300px;
+    margin-top: 1rem;
     text-decoration: none;
     text-align: center;
 }
@@ -71,6 +72,7 @@
 #file-selector {
     background-color: transparent;
     margin-bottom: 2rem;
+    text-align-last: center;
 }
 
 .input-label-edit-form {
@@ -80,7 +82,7 @@
     color: black;
     width: 180px;
     text-decoration: none;
-    text-align: left;
+    text-align: center;
 }
 
 #button-container-edit {

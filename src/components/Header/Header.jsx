@@ -41,6 +41,9 @@ export default function Header() {
 
     return (
         <header>
+            <div className="home-button-container">
+              <button onClick={() => navigate('/')} id="home-button">Home</button>
+            </div>
             <div className="button-container">
             {!user && <button id="btn-register" onClick={ handleRegister } className="user-control">Register</button>}
             {!user && <button onClick={ handleLogin } className="user-control">Login</button>}
