@@ -6,13 +6,12 @@ import { deleteUser } from 'firebase/auth';
 export const getUserByEmail = async (email) => {
   const encodedEmail = encodeEmail(email);
   const snapshot = await get(ref(db, `users/${encodedEmail}`));
-  if(snapshot.exists()) {
+  if (snapshot.exists()) {
     return snapshot.val();
   }
 };
 
 export const createUserHandle = async (email, uid, username, firstName, lastName) => {
-  const encodedEmail = encodeEmail(email);
 
   const user = {
     email,
@@ -24,12 +23,12 @@ export const createUserHandle = async (email, uid, username, firstName, lastName
     profilePicture: '',
   };
 
-  await set(ref(db, `users/${encodedEmail}`), user);
+  await set(ref(db, `users/${uid}`), user);
 };
 
 export const getUserData = async (uid) => {
   const snapshot = await get(query(ref(db, 'users'), orderByChild('uid'), equalTo(uid)));
-  if(snapshot.exists()) {
+  if (snapshot.exists()) {
     return snapshot.val();
   }
 };

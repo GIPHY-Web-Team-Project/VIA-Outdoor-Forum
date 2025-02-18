@@ -1,23 +1,23 @@
 header {
-    padding: 0;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
-    position: relative;
-    margin: 0;
-    background: url("../../common/images/Header.jpg") no-repeat;
-    background-size: cover;
-    background-position: center;
-    border: none;
-    height: 35vh;
-    min-width: 100%;
+  padding: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  position: relative;
+  margin: 0;
+  background: url("../../common/images/Header.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  border: none;
+  height: 35vh;
+  min-width: 100%;
 }
 
 header .button-container {
-    display: flex;
-    gap: 0.1rem; /* Add space between the buttons */
-    margin-top: 1rem;
-    margin-right: 1rem;
+  display: flex;
+  gap: 0.1rem; /* Add space between the buttons */
+  margin-top: 1rem;
+  margin-right: 1rem;
 }
 
 .user-control {
@@ -30,26 +30,26 @@ header .button-container {
 }
 
 #btn-register {
-    background-color: transparent;
-    color: #4e7800;
-    text-decoration: underline;
+  background-color: transparent;
+  color: #4e7800;
+  text-decoration: underline;
 }
 
 .welcome-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
 }
 
 span {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 #btn-profile img {

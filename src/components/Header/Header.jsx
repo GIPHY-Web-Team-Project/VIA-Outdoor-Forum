@@ -10,13 +10,13 @@ export default function Header() {
     const { user, userData, setAppState } = useContext(AppContext);
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
-    const handleRegister = () => {
-        navigate('/register');
-    }
+  const handleRegister = () => {
+    navigate('/register');
+  }
 
-    const handleLogin = () => {
-        navigate('/login');
-    }
+  const handleLogin = () => {
+    navigate('/login');
+  }
 
     const toggleDropdown = () => {
         setDropdownOpen(!dropdownOpen);
