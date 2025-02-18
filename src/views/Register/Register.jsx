@@ -5,6 +5,7 @@ import { createUserHandle, getUserByEmail } from '../../services/users.service';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../config/firebase-config';
 import { nameCheck } from '../../utils/nameUtils';
+import Modal from '../../components/Modal/Modal';
 import './Register.css';
 
 export default function Register () {
@@ -16,7 +17,9 @@ export default function Register () {
         email: '',
         password: '',
     });
-    
+
+    const [showModal, setShowModal] = useState(false);
+    const [modalMessage, setModalMessage] = useState('');
     const navigate = useNavigate();
     
     const register = () => {
@@ -40,12 +43,9 @@ export default function Register () {
             const username = user.username || `user_${userCredential.user.uid}`;
             return createUserHandle(user.email, userCredential.user.uid, username, user.firstName, user.lastName)
         .then(() => {
-            setAppState({
-            user: userCredential.user,
-            userData: null,
-            });
-            alert('Registration successful!');
-        })
+            setModalMessage('Registration successful! Please log in.');
+            setShowModal(true);
+            })
         })
         .catch(error => {
             alert(error.message);
@@ -59,6 +59,11 @@ export default function Register () {
         });
     }
     
+    const handleCloseModal = () => {
+        setShowModal(false);
+        navigate('/login');
+    }
+
     return (
         <div id="register-form-id">
         <h3 id="register-text">Register</h3>
@@ -80,6 +85,7 @@ export default function Register () {
             <br /><br />
             <button onClick={register} id="btn-register-form">Register</button>
         </div>
+        <Modal show={showModal} handleClose={handleCloseModal} message={modalMessage} />
         </div>
     );
 }
