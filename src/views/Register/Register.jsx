@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../store/app.context';
 import { createUserHandle, getUserByEmail } from '../../services/users.service';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signOut } from 'firebase/auth';
 import { auth } from '../../config/firebase-config';
 import { nameCheck } from '../../utils/nameUtils';
 import Modal from '../../components/Modal/Modal';
@@ -30,19 +30,20 @@ export default function Register () {
         console.log('Registering user: ', user.email);
         getUserByEmail(user.email)
         .then(userFromDB => {
-        if(userFromDB) {
-            throw new Error(`User with email ${user.email} already exists`);
-        }
+            if(userFromDB) {
+                throw new Error(`User with email ${user.email} already exists`);
+            }
     
-        if (!nameCheck(user.firstName) || !nameCheck(user.lastName)) {
-            throw new Error('First and last names must be between 4 and 32 characters and contain only letters');
-        }
-        return createUserWithEmailAndPassword(auth, user.email, user.password);
+            if (!nameCheck(user.firstName) || !nameCheck(user.lastName)) {
+                throw new Error('First and last names must be between 4 and 32 characters and contain only letters');
+            }
+            return createUserWithEmailAndPassword(auth, user.email, user.password);
         })
         .then(userCredential => {
             const username = user.username || `user_${userCredential.user.uid}`;
             return createUserHandle(user.email, userCredential.user.uid, username, user.firstName, user.lastName)
         .then(() => {
+            signOut(auth);
             setModalMessage('Registration successful! Please log in.');
             setShowModal(true);
             })
