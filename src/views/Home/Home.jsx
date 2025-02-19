@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getAllPosts, sortPosts } from "../../services/posts.services";
 import { AppContext } from "../../store/app.context";
 import { use } from "react";
+import SortMenu from "../../components/SortMenu/SortMenu";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -14,7 +15,13 @@ export default function Home() {
 
   useEffect(() => {
     getAllPosts()
-      .then((posts) => setPosts(posts))
+      .then((posts) => {
+        if (user) {
+          setPosts(posts);
+        } else {
+          setPosts(posts.slice(0, 10));
+        }
+      })
       .catch((error) => {
         alert(`Couldn't load posts: ${error.message}`);
         console.error(error.message);
@@ -22,17 +29,17 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    setPosts(sortPosts(posts, sort));
-  }, [sort]);
-
+    setPosts((prevPosts) => sortPosts([...prevPosts], sort));
+  }, [sort])
 
   return (
     <div className="home-container">
+      <h3>Home</h3>
       <div>
-        <h3>Home</h3>
         {user && <button onClick={() => navigate("/create-post")}>Create Post</button>}
+        <SortMenu setSort={setSort} />
       </div>
-      {user && posts.length > 0 ?
+      {posts.length > 0 ?
         posts.map((post) => {
           return <div key={post.id} className="post">
             <h3 className="post-title">{post.title}</h3>

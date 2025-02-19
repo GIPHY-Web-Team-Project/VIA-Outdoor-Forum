@@ -24,7 +24,7 @@ export const getAllPosts = async () => {
 
     const posts = Object.values(snapshot.val());
 
-    return posts;
+    return sortPosts(posts, 'recent');
 }
 
 export const sortPosts = (posts, sortBy) => {
@@ -34,11 +34,11 @@ export const sortPosts = (posts, sortBy) => {
         case 'oldest':
             return posts.sort((a, b) => new Date(a.createdOn) - new Date(b.createdOn));
         case 'likes':
-            return posts.sort((a, b) => b.likedBy.length - a.likedBy.length);
+            return posts;
         case 'author':
-            return posts.sort((a, b) => a.author.localeCompare(b.author));
+            return posts;
         case 'content':
-            return posts.sort((a, b) => a.content.length - b.content.length);
+            return posts;
     }
 }
 
