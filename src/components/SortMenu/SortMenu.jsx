@@ -8,8 +8,8 @@ export default function SortMenu({ setSort }) {
     if (!user) {
         return (
             <>
-                <button onClick={setSort('recent')}>Most Recent</button>
-                <button onClick={setSort('likes')}>Most Liked</button>
+                <button onClick={() => setSort('recent')}>Most Recent</button>
+                <button onClick={() => setSort('comments')}>Most Commented</button>
             </>
 
         );
@@ -22,8 +22,8 @@ export default function SortMenu({ setSort }) {
                 <option value="recent">Most Recent</option>
                 <option value="oldest">Oldest</option>
                 <option value="likes">Most Likes</option>
+                <option value="comments">Most Likes</option>
                 <option value="author">Author</option>
-                <option value="content">Content Length</option>
             </select>
         </>
     );

@@ -37,7 +37,7 @@ export const sortPosts = (posts, sortBy) => {
             return posts;
         case 'author':
             return posts;
-        case 'content':
+        case 'comments':
             return posts;
     }
 }

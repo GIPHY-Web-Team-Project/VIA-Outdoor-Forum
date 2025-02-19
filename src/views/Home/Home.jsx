@@ -3,7 +3,6 @@ import "./Home.css";
 import { useNavigate } from "react-router-dom";
 import { getAllPosts, sortPosts } from "../../services/posts.services";
 import { AppContext } from "../../store/app.context";
-import { use } from "react";
 import SortMenu from "../../components/SortMenu/SortMenu";
 
 export default function Home() {
@@ -43,7 +42,13 @@ export default function Home() {
         posts.map((post) => {
           return <div key={post.id} className="post">
             <h3 className="post-title">{post.title}</h3>
-            <button onClick={() => navigate(`/posts/${post.id}`)} className="post-btn">Show More</button>
+            <button onClick={() => {
+              if (user) {
+                navigate(`/posts/${post.id}`);
+              } else {
+                navigate('/login');
+              }
+            }} className="post-btn">Show More</button>
           </div>
         }) :
         <p>No posts found.</p>}
