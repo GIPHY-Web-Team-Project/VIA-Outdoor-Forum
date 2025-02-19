@@ -23,8 +23,9 @@ export default function SinglePost() {
     }, [id]);
 
     return (
-        <div>
+        <>
             {post && <Post post={post} />}
-        </div>
+        </>
+
     )
 }

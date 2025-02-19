@@ -15,10 +15,6 @@ export const uploadPost = async (author, title, content) => {
     await update(ref(db, `posts/${id}`), { id });
 }
 
-export const getPostsAnonUser = async () => {
-
-}
-
 export const getAllPosts = async () => {
     const snapshot = await get(ref(db, 'posts'));
 
@@ -31,7 +27,20 @@ export const getAllPosts = async () => {
     return posts;
 }
 
-export const getPostByID = async () => { }
+export const sortPosts = (posts, sortBy) => {
+    switch (sortBy) {
+        case 'recent':
+            return posts.sort((a, b) => new Date(b.createdOn) - new Date(a.createdOn));
+        case 'oldest':
+            return posts.sort((a, b) => new Date(a.createdOn) - new Date(b.createdOn));
+        case 'likes':
+            return posts.sort((a, b) => b.likedBy.length - a.likedBy.length);
+        case 'author':
+            return posts.sort((a, b) => a.author.localeCompare(b.author));
+        case 'content':
+            return posts.sort((a, b) => a.content.length - b.content.length);
+    }
+}
 
 export const likePost = async (handle, postId) => {
     const updatedPost = {

@@ -36,7 +36,6 @@ export default function Post({ post }) {
       <button className="post-like-btn" onClick={toggleLike}>
         {post.likedBy.includes(userData?.uid) ? 'Unlike' : 'Like'}
       </button>
-
     </div>
   );
 }

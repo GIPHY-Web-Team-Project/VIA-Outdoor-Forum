@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from "react";
-import Post from "../../components/Post/Post";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
-import { getAllPosts } from "../../services/posts.services";
+import { getAllPosts, sortPosts } from "../../services/posts.services";
 import { AppContext } from "../../store/app.context";
+import { use } from "react";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
+  const [sort, setSort] = useState('recent');
   const navigate = useNavigate();
 
   const { user } = useContext(AppContext);
@@ -19,6 +20,11 @@ export default function Home() {
         console.error(error.message);
       });
   }, []);
+
+  useEffect(() => {
+    setPosts(sortPosts(posts, sort));
+  }, [sort]);
+
 
   return (
     <div className="home-container">
