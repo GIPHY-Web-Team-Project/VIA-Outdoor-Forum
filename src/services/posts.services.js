@@ -34,7 +34,7 @@ export const sortPosts = (posts, sortBy) => {
         case 'oldest':
             return posts.sort((a, b) => new Date(a.createdOn) - new Date(b.createdOn));
         case 'likes':
-            return posts;
+            return posts.sort((a, b) => Object.keys(b.likedBy || {}).length - Object.keys(a.likedBy || {}).length);
         case 'author':
             return posts;
         case 'comments':
