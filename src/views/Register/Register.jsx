@@ -16,6 +16,7 @@ export default function Register () {
         username: '',
         email: '',
         password: '',
+        isAdmin: false,
     });
 
     const [showModal, setShowModal] = useState(false);

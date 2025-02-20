@@ -62,6 +62,7 @@ export default function Header() {
                                     <li>My posts</li>
                                     <li>Favorites</li>
                                     <li>My comments</li>
+                                    { userData.isAdmin && <li><NavLink to="/admin" onClick={() => setDropdownOpen(false)}>Admin Dashboard</NavLink></li>}
                                     <li><button onClick={logout} className="user-control" id="logout-control">Logout</button></li>
                                 </ul>
                             </div>

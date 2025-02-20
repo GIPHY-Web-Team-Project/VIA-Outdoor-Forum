@@ -16,6 +16,8 @@ import EditUser from "./views/EditUser/EditUser";
 import './App.css';
 import CreatePost from './views/CreatePost/CreatePost';
 import SinglePost from './views/SinglePost/SinglePost';
+import AdminDashboard from './views/AdminDashboard/AdminDashboard';
+import AdminRoute from './hoc/AdminRoute/AdminRoute';
 
 export default function App() {
   const [appState, setAppState] = useState({
@@ -61,6 +63,7 @@ export default function App() {
             <Route path="/posts/:id" element={<SinglePost />} />
             <Route path="/users/:uid/edit" element={<EditUser />} />
             <Route path="/users/:uid" element={<SingleUser />} />
+            <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

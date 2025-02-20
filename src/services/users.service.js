@@ -11,7 +11,7 @@ export const getUserByEmail = async (email) => {
   }
 };
 
-export const createUserHandle = async (email, uid, username, firstName, lastName) => {
+export const createUserHandle = async (email, uid, username, firstName, lastName, isAdmin = false, isBlocked = false) => {
 
   const user = {
     email,
@@ -19,8 +19,10 @@ export const createUserHandle = async (email, uid, username, firstName, lastName
     username,
     firstName,
     lastName,
+    isAdmin,
     createdOn: new Date().toString(),
     profilePicture: '',
+    isBlocked: false,
   };
 
   await set(ref(db, `users/${uid}`), user);
@@ -53,4 +55,22 @@ export const deleteUserAccount = async () => {
   } else {
     throw new Error('No user is currently signed in.');
   }
+};
+
+export const blockUserAccount = async (uid) => {
+  const snapshot = await get(query(ref(db, 'users'), orderByChild('uid'), equalTo(uid)));
+  if (snapshot.exists()) {
+    const userKey = Object.keys(snapshot.val())[0];
+    await update(ref(db, `users/${userKey}`), { isBlocked: true });
+  } else {
+    throw new Error('User not found');
+  }
+};
+
+export const getAllUsers = async () => {
+  const snapshot = await get(ref(db, 'users'));
+  if (snapshot.exists()) {
+    return Object.values(snapshot.val());
+  }
+  return [];
 };
