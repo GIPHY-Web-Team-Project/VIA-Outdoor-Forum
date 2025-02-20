@@ -22,7 +22,7 @@ export default function SortMenu({ setSort }) {
                 <option value="recent">Most Recent</option>
                 <option value="oldest">Oldest</option>
                 <option value="likes">Most Likes</option>
-                <option value="comments">Most Likes</option>
+                <option value="comments">Most Comments</option>
                 <option value="author">Author</option>
             </select>
         </>

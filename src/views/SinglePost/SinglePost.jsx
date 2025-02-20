@@ -25,7 +25,7 @@ export default function SinglePost() {
     return (
         <>
             {post && <Post post={post} />}
+            {/* {post && <CommentSection post={post} />} */}
         </>
-
     )
 }
