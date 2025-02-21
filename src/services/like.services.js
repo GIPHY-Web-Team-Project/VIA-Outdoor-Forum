@@ -16,7 +16,6 @@ export const like = async (handle, id, type) => {
         }
     }
 
-    console.log(updatedObj)
     return update(ref(db), updatedObj);
 }
 
@@ -33,7 +32,6 @@ export const unlike = async (handle, id, type) => {
             [`users/${handle}/likedComments/${id}`]: null,
         }
     }
-
 
     return update(ref(db), updatedObj);
 }

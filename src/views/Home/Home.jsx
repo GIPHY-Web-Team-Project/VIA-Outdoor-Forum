@@ -25,7 +25,7 @@ export default function Home() {
         alert(`Couldn't load posts: ${error.message}`);
         console.error(error.message);
       });
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     setPosts((prevPosts) => sortPosts([...prevPosts], sort));

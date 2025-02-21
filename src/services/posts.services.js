@@ -35,9 +35,9 @@ export const sortPosts = (posts, sortBy) => {
         case 'likes':
             return posts.sort((a, b) => Object.keys(b.likedBy || {}).length - Object.keys(a.likedBy || {}).length);
         case 'author':
-            return posts;
+            return posts.sort((a, b) => a.author.localeCompare(b.author));
         case 'comments':
-            return posts;
+            return posts.sort((a, b) => Object.keys(b.comments || {}).length - Object.keys(a.comments || {}).length);
     }
 }
 
