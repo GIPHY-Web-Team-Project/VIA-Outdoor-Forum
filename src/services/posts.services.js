@@ -14,6 +14,10 @@ export const uploadPost = async (author, title, content) => {
     await update(ref(db, `posts/${id}`), { id });
 }
 
+export const updatePost = async (id, title, content) => {
+    await update(ref(db, `posts/${id}`), { title, content });
+}
+
 export const filterPostsAuthor = (posts, author) => {
     return posts.filter(post => post.author === author);
 }

@@ -5,6 +5,7 @@ import { filterPostsAuthor, getAllPosts, sortPosts } from "../../services/posts.
 import SortMenu from "../../components/SortMenu/SortMenu";
 import { set } from "firebase/database";
 import Loading from "../../components/Loading/Loading";
+import { YOUR_POSTS } from "../../common/enums";
 
 export default function MyPosts() {
     const [posts, setPosts] = useState([]);
@@ -44,7 +45,7 @@ export default function MyPosts() {
             <h3>Your Posts</h3>
             {isLoading ? <Loading /> : (
                 <>
-                    <SortMenu setSort={setSort} yourPosts="your-posts" />
+                    <SortMenu setSort={setSort} yourPosts={YOUR_POSTS} />
                     {user && posts.length > 0 ?
                         posts.map((post) => {
                             return (
