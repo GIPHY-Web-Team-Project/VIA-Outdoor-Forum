@@ -1,9 +1,12 @@
 import { useContext, useState } from "react";
 import { uploadPost } from "../../services/posts.services";
 import { AppContext } from "../../store/app.context";
+import { useNavigate } from "react-router-dom";
 
 export default function CreatePost() {
     const { userData } = useContext(AppContext);
+
+    const navigate = useNavigate();
 
     const [post, setPost] = useState({
         title: '',
@@ -35,7 +38,7 @@ export default function CreatePost() {
 
 
         try {
-            await uploadPost(userData.username, post.title, post.content);
+            await uploadPost(userData.username, post.title, post.content)
             setPost({
                 title: '',
                 content: '',
@@ -55,7 +58,10 @@ export default function CreatePost() {
             <label htmlFor="content">Content: </label>
             <textarea value={post.content} onChange={e => handleUpdateValue('content', e.target.value)} name="content" id="content" cols="30" rows="10"></textarea>
             <br /> <br />
-            <button onClick={handleCreatePost}>Create Post</button>
+            <button onClick={() => {
+                handleCreatePost();
+                navigate(`/users/${userData.uid}/posts`);
+            }}>Create Post</button>
         </div>
     )
 };
