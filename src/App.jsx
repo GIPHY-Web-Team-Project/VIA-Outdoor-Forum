@@ -16,6 +16,7 @@ import EditUser from "./views/EditUser/EditUser";
 import './App.css';
 import CreatePost from './views/CreatePost/CreatePost';
 import SinglePost from './views/SinglePost/SinglePost';
+import MyPosts from './views/MyPosts/MyPosts';
 
 export default function App() {
   const [appState, setAppState] = useState({
@@ -59,6 +60,7 @@ export default function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/create-post" element={<CreatePost />} />
             <Route path="/posts/:id" element={<SinglePost />} />
+            <Route path="/users/:uid/posts" element={<MyPosts />} />
             <Route path="/users/:uid/edit" element={<EditUser />} />
             <Route path="/users/:uid" element={<SingleUser />} />
             <Route path="*" element={<NotFound />} />

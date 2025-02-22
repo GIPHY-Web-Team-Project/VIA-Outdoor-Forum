@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AppContext } from "../../store/app.context";
 
-export default function SortMenu({ setSort }) {
+export default function SortMenu({ setSort, yourPosts }) {
 
     const { user } = useContext(AppContext);
 
@@ -11,7 +11,6 @@ export default function SortMenu({ setSort }) {
                 <button onClick={() => setSort('recent')}>Most Recent</button>
                 <button onClick={() => setSort('comments')}>Most Commented</button>
             </>
-
         );
     }
 
@@ -23,7 +22,7 @@ export default function SortMenu({ setSort }) {
                 <option value="oldest">Oldest</option>
                 <option value="likes">Most Likes</option>
                 <option value="comments">Most Comments</option>
-                <option value="author">Author</option>
+                {!yourPosts && <option value="author">Author</option>}
             </select>
         </>
     );
