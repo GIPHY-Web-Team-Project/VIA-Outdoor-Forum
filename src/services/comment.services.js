@@ -1,4 +1,4 @@
-import { get, push, ref, update, query, orderByChild, equalTo, onValue } from "firebase/database";
+import { push, ref, update, onValue, remove } from "firebase/database";
 import { db } from "../config/firebase-config";
 
 export const uploadComment = async (author, postId, content) => {
@@ -42,4 +42,8 @@ export const sortComments = (comments, sortBy) => {
         default:
             return comments;
     }
+}
+
+export const deleteComment = async (id) => {
+    await remove(ref(db, `comments/${id}`));
 }
