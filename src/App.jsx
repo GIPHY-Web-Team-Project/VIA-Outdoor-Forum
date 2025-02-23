@@ -18,6 +18,8 @@ import CreatePost from './views/CreatePost/CreatePost';
 import SinglePost from './views/SinglePost/SinglePost';
 import AdminDashboard from './views/AdminDashboard/AdminDashboard';
 import AdminRoute from './hoc/AdminRoute/AdminRoute';
+import PostList from './views/PostList/PostList';
+import UserList from './views/UserList/UserList';
 
 export default function App() {
   const [appState, setAppState] = useState({
@@ -26,6 +28,7 @@ export default function App() {
   });
 
   const [user, loading, error] = useAuthState(auth);
+  const [selectedOption, setSelectedOption] = useState('');
 
   if (appState.user !== user) {
     setAppState({
@@ -50,10 +53,15 @@ export default function App() {
       });
   }, [user]);
 
+  const handleSearch = (searchFor) => {
+    setSelectedOption(searchFor);
+    
+  }
+
   return (
     <BrowserRouter>
       <AppContext.Provider value={{ ...appState, setAppState }}>
-        <Header></Header>
+      <Header onOptionSelect={handleSearch} selectedOption={selectedOption} />
         <div id="body-id">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -63,7 +71,7 @@ export default function App() {
             <Route path="/posts/:id" element={<SinglePost />} />
             <Route path="/users/:uid/edit" element={<EditUser />} />
             <Route path="/users/:uid" element={<SingleUser />} />
-            <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+            <Route path="/admin" element={<AdminRoute><AdminDashboard  onOptionSelect={handleSearch} selectedOption={selectedOption} /></AdminRoute>}/>
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

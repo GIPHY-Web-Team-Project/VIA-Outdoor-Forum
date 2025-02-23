@@ -99,16 +99,16 @@ export const EditUser = () => {
                         <div id="user-details-edit">
                             <div className="row">
                                 <h3 className="input-label-edit-form">Username: </h3>
-                                <input className="input-edit-form" 
-                                    type="text" 
-                                    name="username"
-                                    value={user.userData.username} 
-                                    onChange={handleInputChange}
-                                />
+                                <label className="input-edit-form">{user.userData.username}</label>
                             </div>
                             <div className="row">
                                 <h3 className="input-label-edit-form">Email: </h3>
-                                <label className="input-edit-form">{user.userData.email}</label>
+                                <input className="input-edit-form" 
+                                    type="text" 
+                                    name="firstName"
+                                    value={user.userData.email} 
+                                    onChange={handleInputChange}
+                                />
                             </div>
                             <div className="row">
                                 <h3 className="input-label-edit-form">First name: </h3>

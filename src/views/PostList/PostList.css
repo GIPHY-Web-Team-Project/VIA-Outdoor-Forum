@@ -1,0 +1,61 @@
+.post-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post-item {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.post-title-button {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #000000;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+}
+
+.post-title-button:hover {
+    color: #ffffff;
+}
+
+.post-content {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%; /* Adjust as needed */
+    color: #555;
+}
+
+.post-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 18px;
+    color: #000000;
+}
+
+#delete-button-post {
+    background-color: #4e7800;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    align-self: flex-end;
+    margin-top: 1rem;
+}
+
+#delete-button-post:hover {
+    background-color: #d60f0f;
+    color: white;
+}

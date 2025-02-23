@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import './SearchBar.css';
 export default function SearchBar({ searchId, searchOptions, data, setData, originalData }) {
     const [dropOpen, setDropOpen] = useState(false);
     const [selectedSearch, setSelectedSearch] = useState(searchOptions[0]);
@@ -37,9 +37,10 @@ export default function SearchBar({ searchId, searchOptions, data, setData, orig
 
     return (
         <div id="search-container">
-            <label htmlFor={searchId}>Search:</label>
-            <input type="text" id={searchId} />
-            <button onClick={handleDropDownSearch}>{selectedSearch}</button>
+            <input type="text" id={searchId} className="search-input" placeholder='Search'/>
+            <button id="search-icon" onClick={handleSearchOption}></button>
+            <label>by</label>       
+            <button className="search-buttons-list" onClick={handleDropDownSearch}>{selectedSearch}</button>
             {dropOpen && (
                 <div id="search-dropdown">
                     <ul>
@@ -49,7 +50,6 @@ export default function SearchBar({ searchId, searchOptions, data, setData, orig
                     </ul>
                 </div>
             )}
-            <button onClick={handleSearchOption}>Search</button>
         </div>
     );
 }

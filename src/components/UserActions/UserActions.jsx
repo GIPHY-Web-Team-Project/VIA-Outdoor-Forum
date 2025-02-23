@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
-import UserList from '../UserList/UserList';
+import UserList from '../../views/UserList/UserList';
 import { useUsers } from '../../hooks/useUsers';
 import { deleteUserAccount, updateUserData } from '../../services/users.service';
 import { AppContext } from '../../store/app.context';
@@ -26,7 +26,8 @@ export default function UserActions() {
             return;
         }
 
-        updateUserData(uid, { isBlocked: !users.find(user => user.uid === uid).isBlocked })
+        const user = users.find(user => user.uid === uid);
+        updateUserData(uid, { isBlocked: !user.isBlocked })
             .then(() => {
                 setUsers(users.map(user => {
                     if (user.uid === uid) {
@@ -49,7 +50,8 @@ export default function UserActions() {
             return;
         }
 
-        updateUserData(uid, { isAdmin: !users.find(user => user.uid === uid).isAdmin })
+        const user = users.find(user => user.uid === uid);
+        updateUserData(uid, { isAdmin: !user.isAdmin })
             .then(() => {
                 setUsers(users.map(user => {
                     if (user.uid === uid) {
