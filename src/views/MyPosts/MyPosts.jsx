@@ -42,7 +42,7 @@ export default function MyPosts() {
 
     return (
         <div>
-            <h3>Your Posts</h3>
+            <h3>My Posts</h3>
             {isLoading ? <Loading /> : (
                 <>
                     <SortMenu setSort={setSort} yourPosts={YOUR_POSTS} />
