@@ -39,26 +39,6 @@ export default function Header({ onOptionSelect, selectedOption }) {
       })
   }
 
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  }
-
-
-  const logout = () => {
-    signOut(auth)
-      .then(() => {
-        setAppState({
-          user: null,
-          userData: null
-        });
-        navigate('/login');
-        setDropdownOpen(false);
-      })
-      .catch((error) => {
-        console.error(error.message);
-      })
-  }
-
 
   return (
     <header className={location.pathname === '/' ? 'home-header' : ''}>
