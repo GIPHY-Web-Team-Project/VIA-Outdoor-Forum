@@ -17,6 +17,10 @@
     background-color: #f9f9f9;
 }
 
+.user-item:hover {
+    background-color: #4e7800;
+}
+
 .user-item img {
     width: 100px;
     height: 100px;

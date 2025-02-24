@@ -2,7 +2,7 @@ header {
   padding: 0;
   display: flex;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: space-between; /* Change to space-between to separate left and right content */
   position: relative;
   margin: 0;
   background: url("../../common/images/header-all.jpg") no-repeat;
@@ -49,30 +49,39 @@ header.home-header {
 
 #admin-options-list {
     display: flex;
+    align-items: center;
+    position: absolute;
+    left: 13vw;
+    height: 100%;
 }
 
 .admin-header {
     background-color: transparent;
     color: #4e7800;
     border: none;
-    padding: 0.5rem 1rem 0.5rem 1rem;
+    padding: 0;
+    margin: 0;
     border-radius: 0.25rem;
     cursor: pointer;
 }
 
 #admin-intro {
-    color: white;
+    color: #4e7800;
     font-style: italic;
-    font-size: 15px;
-    margin: 2rem;
-    text-align: left;
+    font-size: 0.7rem;
+    margin-bottom: 4rem;
+    margin-left: 1.5rem;
+    align-items: flex-start;
+    vertical-align: super;
 }
 
-header .button-container {
-  display: flex;
-  gap: 0.1rem;
-  margin-top: 1rem;
-  margin-right: 1rem;
+.button-container {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 1vw;
+    top: 1vh;
+    height: 10vh;
 }
 
 ul {
@@ -138,29 +147,29 @@ ul {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-li {
+.list-item-user-options {
     padding: 0.5rem;
     color: black;
     text-decoration: none;
 }
 
-li:active {
+.list-item-user-options:active {
     background-color: #4e7800;
     color: white;
 }
 
-li:hover {
+.list-item-user-options:hover {
     background-color: #4e7800;
     color: white;
 }
 
-li a {
+.list-item-user-options a {
     color: black;
     text-decoration: none; 
     display: block;
 }
 
-li a:hover {
+.list-item-user-options a:hover {
     color: white;
 }
 
@@ -176,7 +185,6 @@ li a:hover {
     background-color: rgb(255, 0, 0);
 }
 
-
 .admin-select-options.active {
     border-bottom: 1px solid #4e7800;
 }
@@ -189,7 +197,8 @@ li a:hover {
 .admin-nav {
     display: flex;
     justify-content: space-between;
-    padding: 1rem;
+    align-items: center;
+    padding-left: 1rem;
     background-color: transparent;
     color: white;
 }
@@ -202,4 +211,5 @@ li a:hover {
     border: none;
     font-weight: bold;
     font-size: 15px;
-} 
+    position: relative;
+}

@@ -9,6 +9,11 @@ export default function PostList({ posts, id }) {
     const handleTitleClick = (postID) => {
         navigate(`/posts/${postID}`);
     }
+
+    const formatDate = (dateString) => {
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+        return new Date(dateString).toLocaleString(undefined, options);
+    }
     
     return (
         <div id={`forum-list-${id}`}>
@@ -20,8 +25,7 @@ export default function PostList({ posts, id }) {
                         </button>
                         <label className="post-content">{post.content}</label>
                         <div className="post-meta">
-                            <span>{post.createdOn}</span>
-                            <label>|</label>
+                            <span>{formatDate(post.createdOn)}</span>
                             <span>{post.author}</span>
                         </div>
                         <button id="delete-button-post">Delete</button>

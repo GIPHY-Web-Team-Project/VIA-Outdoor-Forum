@@ -50,7 +50,7 @@ export default function Header({ onOptionSelect, selectedOption }) {
       {userData?.isAdmin && location.pathname === '/admin' &&
         <div id="admin-options-list">
           <div className="admin-header">
-            <h4 id="admin-intro">Admin</h4>
+            <h5 id="admin-intro">Admin</h5>
           </div>
           <div className="admin-nav">
           <button
@@ -82,12 +82,12 @@ export default function Header({ onOptionSelect, selectedOption }) {
             {dropdownOpen && (
               <div className="dropdown-menu">
                 <ul>
-                  <li><NavLink to={`/users/${user.uid}`} onClick={() => setDropdownOpen(false)}>My profile</NavLink></li>
-                  <li><NavLink to={`/users/${user.uid}/posts`} onClick={() => setDropdownOpen(false)}>My posts</NavLink></li>
-                  <li>Favorites</li>
-                  <li>My comments</li>
-                  {userData && userData.isAdmin && <li><NavLink to="/admin" onClick={() => setDropdownOpen(false)}>Admin Dashboard</NavLink></li>}
-                  <li><button onClick={logout} className="user-control" id="logout-control">Logout</button></li>
+                  <li className="list-item-user-options"><NavLink to={`/users/${user.uid}`} onClick={() => setDropdownOpen(false)}>My profile</NavLink></li>
+                  <li className="list-item-user-options"><NavLink to={`/users/${user.uid}/posts`} onClick={() => setDropdownOpen(false)}>My posts</NavLink></li>
+                  <li className="list-item-user-options">Favorites</li>
+                  <li className="list-item-user-options">My comments</li>
+                  {userData && userData.isAdmin && <li className="list-item-user-options"><NavLink to="/admin" onClick={() => setDropdownOpen(false)}>Admin Dashboard</NavLink></li>}
+                  <li className="list-item-user-options"><button onClick={logout} className="user-control" id="logout-control">Logout</button></li>
                 </ul>
               </div>
             )}

@@ -1,18 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { AppContext } from "../../store/app.context";
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import UserActions from '../../components/UserActions/UserActions';
 import PostActions from '../../components/PostActions/PostActions';
-import { useUsers } from '../../hooks/useUsers';
-import { usePosts } from '../../hooks/usePosts';
-import Header from '../../components/Header/Header';
+import SortMenu from '../../components/SortMenu/SortMenu';
+import { sortPosts } from "../../services/posts.services";
 import './AdminDashboard.css';
 
-export default function AdminDashboard({ onOptionSelect, selectedOption }) {
-    const { userData } = useContext(AppContext);
-    const navigate = useNavigate();
-    const { users, setUsers, originalUsers, setOriginalUsers } = useUsers(userData, navigate);
-    const { posts, setPosts, originalPosts, setOriginalPosts } = usePosts(userData, navigate);
+export default function AdminDashboard({ selectedOption }) {
 
     return (
         <div className="admin-dashboard">
