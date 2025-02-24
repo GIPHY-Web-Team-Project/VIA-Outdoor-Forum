@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import UserList from '../../views/UserList/UserList';
 import { useUsers } from '../../hooks/useUsers';
-import { deleteUserAccount, updateUserData } from '../../services/users.service';
+import { updateUserData, deleteUserAccount } from '../../services/users.service';
 import { AppContext } from '../../store/app.context';
 import { useNavigate } from 'react-router-dom';
 

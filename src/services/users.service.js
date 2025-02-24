@@ -1,4 +1,4 @@
-import { get, set, ref, query, equalTo, orderByChild, update, remove } from 'firebase/database';
+import { get, set, ref, query, equalTo, orderByChild, update, remove, onValue } from 'firebase/database';
 import { db, auth } from '../config/firebase-config';
 import { encodeEmail } from '../utils/emailUtils';
 import { deleteUser } from 'firebase/auth';
@@ -58,20 +58,15 @@ export const deleteUserAccount = async () => {
   }
 };
 
-export const blockUserAccount = async (uid) => {
-  const snapshot = await get(query(ref(db, 'users'), orderByChild('uid'), equalTo(uid)));
-  if (snapshot.exists()) {
-    const userKey = Object.keys(snapshot.val())[0];
-    await update(ref(db, `users/${userKey}`), { isBlocked: true });
-  } else {
-    throw new Error('User not found');
-  }
-};
-
-export const getAllUsers = async () => {
-  const snapshot = await get(ref(db, 'users'));
-  if (snapshot.exists()) {
-    return Object.values(snapshot.val());
-  }
-  return [];
+export const getAllUsers = async (callback) => {
+  const usersRef = ref(db, 'users');
+  const unsubscribe = onValue(usersRef, (snapshot) => {
+      if (snapshot.exists()) {
+          const users = Object.values(snapshot.val());
+          return callback(users);
+      } else {
+          return callback([]);
+      }
+  });
+  return unsubscribe;
 };

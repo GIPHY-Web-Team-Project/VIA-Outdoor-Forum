@@ -11,9 +11,8 @@ export const useUsers = (userData, navigate) => {
             return;
         }
 
-        getAllUsers()
+        getAllUsers(setUsers)
             .then(users => {
-                setUsers(users);
                 setOriginalUsers(users);
             })
             .catch(error => console.error('Error fetching users:', error));
