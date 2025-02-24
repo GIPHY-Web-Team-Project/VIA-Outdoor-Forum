@@ -128,6 +128,18 @@ export const EditUser = () => {
                                     onChange={handleInputChange}
                                 />
                             </div>
+                            {user.userData.isAdmin && (
+                                    <div className="row">
+                                        <h3 className="input-label-edit-form">Telephone number: </h3>
+                                        <input className="input-edit-form" 
+                                            type="number" 
+                                            name="telephoneNumber"
+                                            value={user.userData.telephoneNumber} 
+                                            onChange={handleInputChange}
+                                        />
+                                    </div>
+                                )
+                            }
                         </div>
                     </div>
                 )}

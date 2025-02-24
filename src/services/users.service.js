@@ -11,7 +11,7 @@ export const getUserByEmail = async (email) => {
   }
 };
 
-export const createUserHandle = async (email, uid, username, firstName, lastName, isAdmin = false, isBlocked = false) => {
+export const createUserHandle = async (email, uid, username, firstName, lastName) => {
 
   const user = {
     email,
@@ -19,10 +19,11 @@ export const createUserHandle = async (email, uid, username, firstName, lastName
     username,
     firstName,
     lastName,
-    isAdmin,
+    isAdmin: false,
     createdOn: new Date().toString(),
     profilePicture: '',
     isBlocked: false,
+    telephoneNumber: '',
   };
 
   await set(ref(db, `users/${uid}`), user);

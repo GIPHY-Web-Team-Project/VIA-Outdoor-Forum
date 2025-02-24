@@ -59,6 +59,12 @@ export const SingleUser = () => {
                             <label className="details-value-user">{user.userData.firstName}</label>
                             <h3 className="details-label-user">Last name: </h3>
                             <label className="details-value-user">{user.userData.lastName}</label>
+                            { user.userData.isAdmin && (
+                                <div>
+                                <h3 className="details-label-user">Telephone number: </h3>
+                                <label className="details-value-user">{user.userData.telephoneNumber}</label>
+                                </div>
+                            )}
                         </div>
                     </div>
                 )}
