@@ -29,7 +29,7 @@ export default function App() {
   });
 
   const [user, loading, error] = useAuthState(auth);
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState('posts');
 
   if (appState.user !== user) {
     setAppState({

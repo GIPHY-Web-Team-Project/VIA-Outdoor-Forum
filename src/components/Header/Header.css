@@ -129,8 +129,8 @@ ul {
     border: 1px solid #4e7800;
     border-radius: 4px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    position: absolute;
+    z-index: 1000;
+    position: fixed;
     text-decoration: none;
     text-align: center;
     right: 0;
