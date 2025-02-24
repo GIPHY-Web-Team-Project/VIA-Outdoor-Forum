@@ -41,7 +41,7 @@ export default function Register () {
             return createUserWithEmailAndPassword(auth, user.email, user.password);
         })
         .then(userCredential => {
-            const username = user.username || `user_${userCredential.user.uid}`;
+            const username = user.username || user.email.split('@')[0];
             return createUserHandle(user.email, userCredential.user.uid, username, user.firstName, user.lastName)
         .then(() => {
             signOut(auth);

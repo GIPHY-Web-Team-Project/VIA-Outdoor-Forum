@@ -46,15 +46,19 @@ export const updateUserData = async (uid, updatedData) => {
   }
 };
 
-export const deleteUserAccount = async () => {
-  const user = auth.currentUser;
-  if (user) {
-    const encodedEmail = encodeEmail(user.email);
-    const userRef = ref(db, `users/${encodedEmail}`);
+export const deleteUserAccount = async (uid) => {
+  const snapshot = await get(query(ref(db, 'users'), orderByChild('uid'), equalTo(uid)));
+  if (snapshot.exists()) {
+    const userKey = Object.keys(snapshot.val())[0];
+    const userRef = ref(db, `users/${userKey}`);
     await remove(userRef);
-    await deleteUser(user);
+
+    const user = auth.currentUser;
+    if (user && user.uid === uid) {
+      await deleteUser(user);
+    }
   } else {
-    throw new Error('No user is currently signed in.');
+    throw new Error('No user found.');
   }
 };
 

@@ -55,7 +55,7 @@ export const EditUser = () => {
     };
 
     const handleDelete = () => {
-        deleteUserAccount()
+        deleteUserAccount(user.userData.uid)
             .then(() => {
                 console.log('User deleted successfully');
                 navigate('/register');
