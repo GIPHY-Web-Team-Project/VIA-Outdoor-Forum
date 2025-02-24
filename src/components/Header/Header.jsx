@@ -6,10 +6,10 @@ import { auth } from "../../config/firebase-config";
 import './Header.css'
 
 export default function Header({ onOptionSelect, selectedOption }) {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { user, userData, setAppState } = useContext(AppContext);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { user, userData, setAppState } = useContext(AppContext);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleRegister = () => {
     navigate('/register');
@@ -17,6 +17,26 @@ export default function Header({ onOptionSelect, selectedOption }) {
 
   const handleLogin = () => {
     navigate('/login');
+  }
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  }
+
+
+  const logout = () => {
+    signOut(auth)
+      .then(() => {
+        setAppState({
+          user: null,
+          userData: null
+        });
+        navigate('/login');
+        setDropdownOpen(false);
+      })
+      .catch((error) => {
+        console.error(error.message);
+      })
   }
 
   const toggleDropdown = () => {

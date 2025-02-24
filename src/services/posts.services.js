@@ -1,4 +1,3 @@
-import { databaseURL } from "../config/firebase-config";
 import { get, push, ref, update } from "firebase/database";
 import { db } from "../config/firebase-config";
 
@@ -15,8 +14,12 @@ export const uploadPost = async (author, title, content) => {
     await update(ref(db, `posts/${id}`), { id });
 }
 
-export const getPostsAnonUser = async () => {
+export const updatePost = async (id, title, content) => {
+    await update(ref(db, `posts/${id}`), { title, content });
+}
 
+export const filterPostsAuthor = (posts, author) => {
+    return posts.filter(post => post.author === author);
 }
 
 export const getAllPosts = async () => {
@@ -28,25 +31,21 @@ export const getAllPosts = async () => {
 
     const posts = Object.values(snapshot.val());
 
-    return posts;
+    return sortPosts(posts, 'recent');
 }
 
-export const getPostByID = async () => { }
-
-export const likePost = async (handle, postId) => {
-    const updatedPost = {
-        [`posts/${postId}/likedBy/${handle}`]: true,
-        [`users/${handle}/likedPosts/${postId}`]: true,
+export const sortPosts = (posts, sortBy) => {
+    switch (sortBy) {
+        case 'recent':
+            return posts.sort((a, b) => new Date(b.createdOn) - new Date(a.createdOn));
+        case 'oldest':
+            return posts.sort((a, b) => new Date(a.createdOn) - new Date(b.createdOn));
+        case 'likes':
+            return posts.sort((a, b) => Object.keys(b.likedBy || {}).length - Object.keys(a.likedBy || {}).length);
+        case 'author':
+            return posts.sort((a, b) => a.author.localeCompare(b.author));
+        case 'comments':
+            return posts.sort((a, b) => Object.keys(b.comments || {}).length - Object.keys(a.comments || {}).length);
     }
-
-    return update(ref(db), updatedPost);
 }
 
-export const unlikePost = async (handle, postId) => {
-    const updatedPost = {
-        [`posts/${postId}/likedBy/${handle}`]: null,
-        [`users/${handle}/likedPosts/${postId}`]: null,
-    }
-
-    return update(ref(db), updatedPost);
-}

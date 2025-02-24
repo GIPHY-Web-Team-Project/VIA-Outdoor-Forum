@@ -20,6 +20,7 @@ import AdminDashboard from './views/AdminDashboard/AdminDashboard';
 import AdminRoute from './hoc/AdminRoute/AdminRoute';
 import PostList from './views/PostList/PostList';
 import UserList from './views/UserList/UserList';
+import MyPosts from './views/MyPosts/MyPosts';
 
 export default function App() {
   const [appState, setAppState] = useState({
@@ -69,6 +70,7 @@ export default function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/create-post" element={<CreatePost />} />
             <Route path="/posts/:id" element={<SinglePost />} />
+            <Route path="/users/:uid/posts" element={<MyPosts />} />
             <Route path="/users/:uid/edit" element={<EditUser />} />
             <Route path="/users/:uid" element={<SingleUser />} />
             <Route path="/admin" element={<AdminRoute><AdminDashboard  onOptionSelect={handleSearch} selectedOption={selectedOption} /></AdminRoute>}/>

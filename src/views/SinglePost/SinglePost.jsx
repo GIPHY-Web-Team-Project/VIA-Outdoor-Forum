@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../../config/firebase-config";
 import Post from "../../components/Post/Post";
+import CommentSection from "../../components/CommentSection/CommentSection";
 
 export default function SinglePost() {
     const [post, setPost] = useState(null);
@@ -23,8 +24,9 @@ export default function SinglePost() {
     }, [id]);
 
     return (
-        <div>
+        <>
             {post && <Post post={post} />}
-        </div>
+            { post && <CommentSection post={post} />}
+        </>
     )
 }

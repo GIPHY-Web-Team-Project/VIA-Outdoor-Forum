@@ -1,0 +1,39 @@
+.comment-section {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #bad1c1;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(9, 155, 33, 0.1);
+}
+
+.comments-list {
+  margin-top: 20px;
+  padding: 0;
+  list-style-type: none;
+}
+
+.comment-item {
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 15px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(3, 92, 10, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.comment-author {
+  font-weight: bold;
+  color: #0d5f03;
+  margin-bottom: 5px;
+}
+
+.comment-content {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.comment-item:hover {
+  background-color: #f1f1f1;
+}
