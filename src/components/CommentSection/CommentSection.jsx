@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { deleteComment, getAllComments } from "../../services/comment.services";
 import LeaveComment from "../LeaveComment/LeaveComment";
 import "./CommentSection.css";
 import { useParams } from "react-router-dom";
 import Comment from '../Comment/Comment';
+import { AppContext } from '../../store/app.context';
 
 export default function CommentSection({ post }) {
+    const { userData } = useContext(AppContext);
     const [comments, setComments] = useState([]);
     const { id } = useParams();
 
@@ -32,7 +34,9 @@ export default function CommentSection({ post }) {
 
     return (
         <div className="comment-section">
+            { userData && !userData.isBlocked && 
             <LeaveComment post={post} />
+            }
             <div className="comments-list">
                 {comments.map(comment => (
                     <Comment key={comment.id} comment={comment} handleDelete={handleDelete} />

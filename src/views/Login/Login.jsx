@@ -29,8 +29,7 @@ export default function Login() {
         userData: null,
       });
 
-
-      navigate(location.state?.from.pathname ?? '/');
+      navigate('/');
     })
     .catch((error) => {
       console.error(error.message);

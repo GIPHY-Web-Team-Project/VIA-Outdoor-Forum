@@ -12,7 +12,7 @@ export default function Home() {
   const [sort, setSort] = useState('recent');
   const navigate = useNavigate();
 
-  const { user } = useContext(AppContext);
+  const { user, userData } = useContext(AppContext);
 
   useEffect(() => {
 
@@ -45,7 +45,7 @@ export default function Home() {
       {isLoading ? <Loading /> : (
         <>
           <div>
-            {user && <button onClick={() => navigate("/create-post")}>Create Post</button>}
+            {user && userData && !userData.isBlocked && <button onClick={() => navigate("/create-post")}>Create Post</button>}
             <SortMenu setSort={setSort} />
           </div>
           {posts.length > 0 ?
