@@ -34,10 +34,6 @@ export default function Home() {
       });
   }, [user]);
 
-  // useEffect(() => {
-  //   setPosts((prevPosts) => sortPosts([...prevPosts], sort));
-  // }, [sort])
-
   return (
     <div className="home-container">
       <h3>Home</h3>
@@ -45,7 +41,6 @@ export default function Home() {
         <>
           <div>
             {user && userData && !userData.isBlocked && <button onClick={() => navigate("/create-post")}>Create Post</button>}
-            <SortMenu posts={posts} setPosts={setPosts} />
           </div>
           {posts.length > 0 ?
             <PostList posts={posts} id={'user'} setPosts={setPosts} originalPosts={originalPosts} setOriginalPosts={setOriginalPosts} />:

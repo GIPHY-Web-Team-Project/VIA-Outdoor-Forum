@@ -35,17 +35,19 @@ export const getAllPosts = async () => {
 }
 
 export const sortPosts = (posts, sortBy) => {
+    const sortedPosts = [...posts];
+
     switch (sortBy) {
         case 'recent':
-            return posts.sort((a, b) => new Date(b.createdOn) - new Date(a.createdOn));
+            return sortedPosts.sort((a, b) => new Date(b.createdOn) - new Date(a.createdOn));
         case 'oldest':
-            return posts.sort((a, b) => new Date(a.createdOn) - new Date(b.createdOn));
+            return sortedPosts.sort((a, b) => new Date(a.createdOn) - new Date(b.createdOn));
         case 'likes':
-            return posts.sort((a, b) => Object.keys(b.likedBy || {}).length - Object.keys(a.likedBy || {}).length);
+            return sortedPosts.sort((a, b) => Object.keys(b.likedBy || {}).length - Object.keys(a.likedBy || {}).length);
         case 'author':
-            return posts.sort((a, b) => a.author.localeCompare(b.author));
+            return sortedPosts.sort((a, b) => a.author.localeCompare(b.author));
         case 'comments':
-            return posts.sort((a, b) => Object.keys(b.comments || {}).length - Object.keys(a.comments || {}).length);
+            return sortedPosts.sort((a, b) => Object.keys(b.comments || {}).length - Object.keys(a.comments || {}).length);
     }
 }
 

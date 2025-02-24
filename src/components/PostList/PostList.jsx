@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import './PostList.css';
-import { deletePost } from '../../services/posts.services';
+import { deletePost, sortPosts } from '../../services/posts.services';
 import { AppContext } from '../../store/app.context';
+import SortMenu from '../SortMenu/SortMenu';
 
 export default function PostList({ posts, id, setPosts, originalPosts, setOriginalPosts }) {
     const navigate = useNavigate();
+    const [ sort, setSort ] = useState('recent');
 
     const { userData } = useContext(AppContext);
 
@@ -20,8 +22,20 @@ export default function PostList({ posts, id, setPosts, originalPosts, setOrigin
         };
     };
 
+    const sortedPosts = useMemo(() => {
+        return sortPosts(posts, sort);
+    }, [posts, sort]);
+
+    useEffect(() => {
+        if (JSON.stringify(posts) !== JSON.stringify(sortedPosts)) {
+            setPosts(sortedPosts);
+            setOriginalPosts(sortedPosts);
+        }
+    }, [sortedPosts, posts, setPosts, setOriginalPosts]);
+
     return (
         <div id={`forum-list-${id}`}>
+            <SortMenu posts={posts} setSort={setSort} myPosts={id} />
             <ul className="post-list">
                 {posts.map(post => (
                     <li key={post.id} className="post-item">
