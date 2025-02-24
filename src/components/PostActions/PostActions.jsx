@@ -15,15 +15,11 @@ export default function PostActions() {
             <SearchBar
                 searchId="search-posts"
                 searchOptions={['title', 'author']}
-                data={posts}
                 setData={setPosts}
                 originalData={originalPosts}
             />
             <PostList
                 posts={posts}
-                setPosts={setPosts}
-                originalPosts={originalPosts}
-                setOriginalPosts={setOriginalPosts}
             />
         </div>
     );

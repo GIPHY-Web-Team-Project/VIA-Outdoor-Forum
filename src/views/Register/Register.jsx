@@ -80,7 +80,7 @@ export default function Register () {
             <input className="register-input-form" value={user.username} onChange={updateUser('username')} type="text" name="username" id="username" placeholder='optional'/>
             <br /><br />
             <label className="register-label-form" htmlFor="email">Email: </label>
-            <input className="register-input-form" value={user.email} onChange={updateUser('email')} type="text" name="email" id="email"/>
+            <input className="register-input-form" value={user.email} onChange={updateUser('email')} type="email" name="email" id="email"/>
             <br /><br />
             <label className="register-label-form" htmlFor="password">Password: </label>
             <input className="register-input-form" value={user.password} onChange={updateUser('password')} type="password" name="password" id="password" />

@@ -9,7 +9,7 @@ export default function Comment({ comment }) {
       <p className="comment-author">Author: {comment.author}</p>
       <p className="comment-date">Created on: {comment.createdOn}</p>
       <p className="comment-likes">Likes: {comment.likedBy ? comment.likedBy.length : 0}</p>
-      <LikeButton obj={comment} typeProp="comment" />
+      <LikeButton obj={comment} typeProp="comment" isLikedByTrue={comment.likedBy} />
     </div>
   );
 }

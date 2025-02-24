@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './SearchBar.css';
-export default function SearchBar({ searchId, searchOptions, data, setData, originalData }) {
+export default function SearchBar({ searchId, searchOptions, setData, originalData }) {
     const [dropOpen, setDropOpen] = useState(false);
     const [selectedSearch, setSelectedSearch] = useState(searchOptions[0]);
 

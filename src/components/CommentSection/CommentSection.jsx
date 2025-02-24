@@ -3,6 +3,7 @@ import { deleteComment, getAllComments } from "../../services/comment.services";
 import LeaveComment from "../LeaveComment/LeaveComment";
 import "./CommentSection.css";
 import { useParams } from "react-router-dom";
+import Comment from '../Comment/Comment';
 
 export default function CommentSection({ post }) {
     const [comments, setComments] = useState([]);
@@ -34,11 +35,7 @@ export default function CommentSection({ post }) {
             <LeaveComment post={post} />
             <div className="comments-list">
                 {comments.map(comment => (
-                    <div key={comment.id} className="comment-item">
-                        <p className="comment-author"><strong>{comment.author}</strong></p>
-                        <p className="comment-content">{comment.content}</p>
-                        <button className="delete" onClick={()=> handleDelete(comment.id) }>Delete</button>
-                    </div>
+                    <Comment key={comment.id} comment={comment} handleDelete={handleDelete} />
                 ))}
             </div>
         </div>

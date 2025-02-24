@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AppContext } from "../../store/app.context";
 import { like, unlike } from "../../services/like.services";
 
-export default function LikeButton({ obj, typeProp }) {
+export default function LikeButton({ obj, typeProp, isLikedByTrue }) {
     const { userData } = useContext(AppContext);
 
     const toggleLike = async (obj, id, type) => {
@@ -24,7 +24,7 @@ export default function LikeButton({ obj, typeProp }) {
     return (
         <>
             <button className="like-btn" onClick={() => toggleLike(obj, obj.id, typeProp)}>
-                {obj.likedBy.includes(userData?.uid) ? 'Unlike' : 'Like'}
+               {!obj.likedBy ? 'Like' : obj.likedBy.includes(userData?.uid) ? 'Unlike' : 'Like'}
             </button>
         </>
     )

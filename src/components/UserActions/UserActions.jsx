@@ -74,7 +74,6 @@ export default function UserActions() {
             <SearchBar
                 searchId="search"
                 searchOptions={['username', 'email', 'name']}
-                data={users}
                 setData={setUsers}
                 originalData={originalUsers}
             />

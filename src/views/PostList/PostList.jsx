@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import './PostList.css';
 
-export default function PostList({ posts, setPosts, originalPosts, setOriginalPosts }) {
+export default function PostList({ posts, id }) {
     const navigate = useNavigate();
 
     const handleTitleClick = (postID) => {
@@ -11,7 +11,7 @@ export default function PostList({ posts, setPosts, originalPosts, setOriginalPo
     }
     
     return (
-        <div id="forum-list-admin">
+        <div id={`forum-list-${id}`}>
             <ul className="post-list">
                 {posts.map(post => (
                     <li key={post.id} className="post-item">
