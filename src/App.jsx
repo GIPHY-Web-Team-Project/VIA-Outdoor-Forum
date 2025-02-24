@@ -18,8 +18,6 @@ import CreatePost from './views/CreatePost/CreatePost';
 import SinglePost from './views/SinglePost/SinglePost';
 import AdminDashboard from './views/AdminDashboard/AdminDashboard';
 import AdminRoute from './hoc/AdminRoute/AdminRoute';
-import PostList from './views/PostList/PostList';
-import UserList from './views/UserList/UserList';
 import MyPosts from './views/MyPosts/MyPosts';
 
 export default function App() {

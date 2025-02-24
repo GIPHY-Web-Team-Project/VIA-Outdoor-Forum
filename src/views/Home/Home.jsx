@@ -5,17 +5,16 @@ import { getAllPosts, sortPosts } from "../../services/posts.services";
 import { AppContext } from "../../store/app.context";
 import SortMenu from "../../components/SortMenu/SortMenu";
 import Loading from "../../components/Loading/Loading";
+import PostList from '../../components/PostList/PostList';
+import { usePosts } from '../../hooks/usePosts';
 
 export default function Home() {
-  const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [sort, setSort] = useState('recent');
   const navigate = useNavigate();
-
   const { user, userData } = useContext(AppContext);
-
+  const { posts, setPosts, originalPosts, setOriginalPosts } = usePosts(userData, navigate);
+  
   useEffect(() => {
-
     setIsLoading(true);
 
     getAllPosts()
@@ -35,9 +34,9 @@ export default function Home() {
       });
   }, [user]);
 
-  useEffect(() => {
-    setPosts((prevPosts) => sortPosts([...prevPosts], sort));
-  }, [sort])
+  // useEffect(() => {
+  //   setPosts((prevPosts) => sortPosts([...prevPosts], sort));
+  // }, [sort])
 
   return (
     <div className="home-container">
@@ -46,21 +45,10 @@ export default function Home() {
         <>
           <div>
             {user && userData && !userData.isBlocked && <button onClick={() => navigate("/create-post")}>Create Post</button>}
-            <SortMenu setSort={setSort} />
+            <SortMenu posts={posts} setPosts={setPosts} />
           </div>
           {posts.length > 0 ?
-            posts.map((post) => {
-              return <div key={post.id} className="post">
-                <h3 className="post-title">{post.title}</h3>
-                <button onClick={() => {
-                  if (user) {
-                    navigate(`/posts/${post.id}`);
-                  } else {
-                    navigate('/login');
-                  }
-                }} className="post-btn">Show More</button>
-              </div>
-            }) :
+            <PostList posts={posts} id={'user'} setPosts={setPosts} originalPosts={originalPosts} setOriginalPosts={setOriginalPosts} />:
             <p>No posts found.</p>}
         </>
       )}

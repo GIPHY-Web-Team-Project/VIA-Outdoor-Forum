@@ -1,4 +1,4 @@
-import { get, push, ref, update } from "firebase/database";
+import { get, push, ref, remove, update } from "firebase/database";
 import { db } from "../config/firebase-config";
 
 export const uploadPost = async (author, title, content) => {
@@ -49,3 +49,6 @@ export const sortPosts = (posts, sortBy) => {
     }
 }
 
+export const deletePost = async (postId) => {
+    await remove(ref(db, `posts/${postId}`));
+}
