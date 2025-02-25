@@ -4,6 +4,17 @@ import { useState } from 'react';
 import { subscribeToStats } from '../../services/stats.services';
 
 
+/**
+ * Footer component that displays statistics and copyright information.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Footer />
+ * )
+ *
+ * @returns {JSX.Element} The rendered footer component.
+ */
 export default function Footer() {
     const [stats, setStats] = useState({totalPosts: 0, totalComments: 0, totalUsers: 0});
     useEffect(() => {
