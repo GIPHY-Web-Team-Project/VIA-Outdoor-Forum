@@ -58,3 +58,60 @@
 .like-button:hover {
   background-color: #0056b3;
 }
+
+/* Стил за формата за редактиране */
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.edit-title,
+.edit-content {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+.edit-title:focus,
+.edit-content:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.edit-content {
+  height: 80px;
+  resize: vertical;
+}
+
+.edit-form button {
+  padding: 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-form button:first-of-type {
+  background-color: #28a745;
+  color: white;
+}
+
+.edit-form button:first-of-type:hover {
+  background-color: #218838;
+}
+
+.edit-form button:last-of-type {
+  background-color: #dc3545;
+  color: white;
+}
+
+.edit-form button:last-of-type:hover {
+  background-color: #c82333;
+}

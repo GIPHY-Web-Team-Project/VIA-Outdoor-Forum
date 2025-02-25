@@ -1,4 +1,4 @@
-import { push, ref, update, onValue, remove } from "firebase/database";
+import { push, ref, update, onValue, remove, query, orderByChild, equalTo, get } from "firebase/database";
 import { db } from "../config/firebase-config";
 
 export const uploadComment = async (author, postId, content) => {
@@ -46,4 +46,22 @@ export const sortComments = (comments, sortBy) => {
 
 export const deleteComment = async (id) => {
     await remove(ref(db, `comments/${id}`));
+}
+
+export const updateComment = async (id, updatedComment) => {
+    await update(ref(db, `comments/${id}`), updatedComment);
+}
+
+export const getAuthorComments = async (author) => {
+    if (!author) {
+        throw new Error("Author is undefined");
+    }
+
+    const snapshot = await get(query(ref(db, 'comments'), orderByChild('author'), equalTo(author)));
+
+    if (!snapshot.exists()) {
+        return [];
+    }
+
+    return Object.values(snapshot.val());
 }
