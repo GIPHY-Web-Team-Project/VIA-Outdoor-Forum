@@ -74,3 +74,16 @@ export const getAllUsers = async (callback) => {
   });
   return unsubscribe;
 };
+
+export const sortUsers = (users, sortBy) => {
+  const sortedUsers = [...users];
+
+  switch (sortBy) {
+      case 'newest':
+          return sortedUsers.sort((a, b) => new Date(b.createdOn) - new Date(a.createdOn));
+      case 'oldest':
+          return sortedUsers.sort((a, b) => new Date(a.createdOn) - new Date(b.createdOn));
+      case 'name':
+          return sortedUsers.sort((a, b) => a.username.localeCompare(b.username));
+  }
+}

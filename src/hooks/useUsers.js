@@ -11,11 +11,16 @@ export const useUsers = (userData, navigate) => {
             return;
         }
 
-        getAllUsers(setUsers)
-            .then(users => {
-                setOriginalUsers(users);
-            })
-            .catch(error => console.error('Error fetching users:', error));
+        const unsubscribe = getAllUsers((users) => {
+            setUsers(users);
+            setOriginalUsers(users);
+        })
+
+        return () => {
+            if (typeof unsubscribe === 'function') {
+                unsubscribe();
+            }
+        };
     }, [userData, navigate]);
 
     return { users, setUsers, originalUsers, setOriginalUsers };

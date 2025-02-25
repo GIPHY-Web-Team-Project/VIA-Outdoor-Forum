@@ -79,6 +79,7 @@ export default function UserActions() {
             />
             <UserList
                 users={users}
+                setUsers={setUsers}
                 handleAdmin={handleAdmin}
                 handleBlock={handleBlock}
                 handleDeleteUser={handleDeleteUser}
