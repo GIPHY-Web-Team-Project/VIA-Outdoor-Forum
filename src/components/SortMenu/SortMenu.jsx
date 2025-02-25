@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { AppContext } from "../../store/app.context";
 
-export default function SortMenu({ setSort, yourPosts }) {
+export default function SortMenu({ setSort, myPosts }) {
 
     const { user } = useContext(AppContext);
+
+    
 
     if (!user) {
         return (
@@ -22,7 +24,7 @@ export default function SortMenu({ setSort, yourPosts }) {
                 <option value="oldest">Oldest</option>
                 <option value="likes">Most Likes</option>
                 <option value="comments">Most Comments</option>
-                {!yourPosts && <option value="author">Author</option>}
+                {myPosts !== 'my-posts' && <option value="author">Author</option>}
             </select>
         </>
     );

@@ -82,12 +82,11 @@ export default function Header({ onOptionSelect, selectedOption }) {
             {dropdownOpen && (
               <div className="dropdown-menu">
                 <ul>
-                  <li className="list-item-user-options"><NavLink to={`/users/${user.uid}`} onClick={() => setDropdownOpen(false)}>My profile</NavLink></li>
-                  <li className="list-item-user-options"><NavLink to={`/users/${user.uid}/posts`} onClick={() => setDropdownOpen(false)}>My posts</NavLink></li>
-                  <li className="list-item-user-options">Favorites</li>
-                  <li className="list-item-user-options">My comments</li>
-                  {userData && userData.isAdmin && <li className="list-item-user-options"><NavLink to="/admin" onClick={() => setDropdownOpen(false)}>Admin Dashboard</NavLink></li>}
-                  <li className="list-item-user-options"><button onClick={logout} className="user-control" id="logout-control">Logout</button></li>
+                  <li className='dropdown-nav-link'><NavLink to={`/users/${user.uid}`} onClick={() => setDropdownOpen(false)}>My profile</NavLink></li>
+                  <li className='dropdown-nav-link'><NavLink to={`/users/${user.uid}/posts`} onClick={() => setDropdownOpen(false)}>My posts</NavLink></li>
+                  <li className='dropdown-nav-link'>My comments</li>
+                  {userData && userData.isAdmin && <li className='dropdown-nav-link'><NavLink to="/admin" onClick={() => setDropdownOpen(false)}>Admin Dashboard</NavLink></li>}
+                  <li className='dropdown-nav-link'><button onClick={logout} className="user-control" id="logout-control">Logout</button></li>
                 </ul>
               </div>
             )}

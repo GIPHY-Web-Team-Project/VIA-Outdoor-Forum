@@ -147,29 +147,29 @@ ul {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.list-item-user-options {
+.dropdown-nav-link {
     padding: 0.5rem;
     color: black;
     text-decoration: none;
 }
 
-.list-item-user-options:active {
+.dropdown-nav-link:active {
     background-color: #4e7800;
     color: white;
 }
 
-.list-item-user-options:hover {
+.dropdown-nav-link:hover {
     background-color: #4e7800;
     color: white;
 }
 
-.list-item-user-options a {
+.dropdown-nav-link a {
     color: black;
     text-decoration: none; 
     display: block;
 }
 
-.list-item-user-options a:hover {
+.dropdown-nav-link a:hover {
     color: white;
 }
 

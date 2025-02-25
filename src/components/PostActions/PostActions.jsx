@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
-import PostList from '../../views/PostList/PostList';
+import PostList from '../PostList/PostList';
 import { usePosts } from '../../hooks/usePosts';
 import { AppContext } from '../../store/app.context';
 import { useNavigate } from 'react-router-dom';
@@ -20,6 +20,10 @@ export default function PostActions() {
             />
             <PostList
                 posts={posts}
+                id={'admin'}
+                setPosts={setPosts}
+                originalPosts={originalPosts}
+                setOriginalPosts={setOriginalPosts}
             />
         </div>
     );
