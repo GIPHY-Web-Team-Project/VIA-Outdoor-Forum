@@ -1,15 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import SortUsers from '../../components/SortUsers/SortUsers'; 
+import { sortUsers }  from '../../services/users.service';
 import './UserList.css';
 
-export default function UserList({ users: initialUsers, handleAdmin, handleBlock, handleDeleteUser }) {
-    const [users, setUsers] = useState(initialUsers);
+export default function UserList({ users, setUsers, handleAdmin, handleBlock, handleDeleteUser }) {
+    const [ sort, setSort ] = useState('newest');
     const navigate = useNavigate();
 
+    const sortedUsers = useMemo(() => {
+        return sortUsers(users, sort);
+    }, [users, sort]);
+
     useEffect(() => {
-        setUsers(initialUsers);
-    });
+        if (JSON.stringify(users) !== JSON.stringify(sortedUsers)) {
+            setUsers(sortedUsers);
+        }
+    }, [sortedUsers, users, setUsers]);
 
     const handleProfileClick = (uid) => {
         navigate(`/users/${uid}`);
@@ -27,8 +35,9 @@ export default function UserList({ users: initialUsers, handleAdmin, handleBlock
 
     return (
         <div id="user-list-admin">
+            <SortUsers users={users} setSort={setSort}/>
             <ul className="user-list">
-                {initialUsers.map(user => (
+                {users.map(user => (
                     <li key={user.uid} className="user-item">
                         <img
                             src={user.profilePicture || "../../common/images/avatar.jpg"}
