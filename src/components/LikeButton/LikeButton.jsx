@@ -21,6 +21,7 @@ const toggleLike = async (id, type) => {
         if (isLiked) {
             await unlike(userData.uid, id, type);
         } else {
+            
             await like(userData.uid, id, type);
         }
     } catch (error) {
@@ -31,7 +32,7 @@ const toggleLike = async (id, type) => {
 
     return (
         <>
-            <button className="like-btn" onClick={() => toggleLike(obj, obj.id, typeProp)}>
+            <button className="like-btn" onClick={() => toggleLike(obj.id, typeProp)}>
             {isLikedByUser() ? 'Unlike' : 'Like'}
             </button>
         </>

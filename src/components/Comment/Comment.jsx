@@ -61,10 +61,8 @@ export default function Comment({ comment }) {
           <p className="comment-content">{comment.content}</p>
           <p className="comment-author">Author: {comment.author}</p>
           <p className="comment-date">Created on: {comment.createdOn}</p>
-          <p className="comment-likes">
-            Likes: {getLikesCount()}
-          </p>
-          <LikeButton obj={comment} typeProp="comment" /> 
+          <p className="comment-likes">Likes: {getLikesCount()}</p>
+          <LikeButton obj={comment} typeProp='comment' /> 
         </>
       )}
 
