@@ -12,33 +12,15 @@
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    border: 1px solid #ddd;
     border-radius: 8px;
-    background-color: #ffffff; /* Add white background */
-    margin-bottom: 1rem; /* Add space between posts */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
-    transition: border-color 0.3s ease; /* Smooth transition for border color */
+    background-color: #ffffff; 
+    margin-bottom: 1rem; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
     width: 95vw;
 }
 
 .post-item:hover {
     box-shadow: inset 0 0 0 0.3rem #4e7800;
-}
-
-.post-title-button {
-    background-color: transparent;
-    cursor: pointer;
-    border: none;
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #000000;
-    text-align: left;
-    padding: 0;
-    margin: 0;
-}
-
-.post-title-button:hover {
-    color: #4e7800; /* Change text color to green on hover */
 }
 
 .post-content {
@@ -56,6 +38,10 @@
     margin-top: 0.5rem;
     font-size: 18px;
     color: #000000;
+}
+
+.post-list-btn {
+    align-self: flex-end;
 }
 
 #delete-button-post {

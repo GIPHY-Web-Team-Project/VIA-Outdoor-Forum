@@ -52,12 +52,12 @@ export default function PostList({ posts, id, setPosts, originalPosts, setOrigin
                 {posts.map(post => (
                     <li key={post.id} className="post-item">
                         <p className="post-title">{post.title}</p>
-                        <label className="post-content">{post.content}</label>
+                        <label className="post-content">{post.content.slice(0, 31)}...</label>
                         <div className="post-meta">
                         <span>{formatDate(post.createdOn)}</span>
                         <span>{post.author}</span>
                         </div>
-                        <button className='btn' onClick={() => {
+                        <button className='btn post-list-btn' onClick={() => {
                             if (!user) {
                                 navigate('/login');
                             } else {

@@ -8,8 +8,6 @@ export default function Post({ post }) {
   const [edit, setEdit] = useState(false);
   const { user, userData } = useContext(AppContext);
 
-  console.log(userData)
-
   return (
     <div className="post">
       <div className="post-info">
