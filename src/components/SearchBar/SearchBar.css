@@ -37,11 +37,10 @@
 }
 
 #span-search-by {
-    margin-left: 10px; /* Add space between the input and the span */
     margin-bottom: 0.1rem;
 }
 
-.search-select {
+select {
     border: none;
     border-bottom: 1px solid black;
     background-color: transparent;
@@ -50,8 +49,27 @@
     padding-right: 1px;
 }
 
+option {
+    background-color: #a6a6a6c2;
+}
+
 #search-icon-div {
     position: relative; /* Add relative positioning */
     display: flex;
     align-items: center;
+}
+
+#sort-filter-container {
+    display: flex;
+    margin: 0.1rem;
+    padding: 0.3rem;
+}
+
+.sort-filter-label{
+    font-size: 18px;
+}
+
+.sort-filter-element {
+    font-size: 18px;
+    margin-right: 0.5rem;
 }

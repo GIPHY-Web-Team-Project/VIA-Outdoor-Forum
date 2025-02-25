@@ -17,20 +17,20 @@ export default function SortMenu({ setSort, myPosts }) {
     }
 
     return (
-        <>
-            <h4>Sort by: </h4>
-            <select onChange={(e) => setSort(e.target.value)}>
+        <div id="sort-filter-container">
+            <h4 className="sort-filter-label">Sort by: </h4>
+            <select className="sort-filter-element" onChange={(e) => setSort(e.target.value)}>
                 <option value="recent">Most Recent</option>
                 <option value="oldest">Oldest</option>
                 <option value="likes">Most Likes</option>
                 <option value="comments">Most Comments</option>
                 {myPosts !== 'my-posts' && <option value="author">Author</option>}
             </select>
-            <h4>Filter by:</h4>
-            <select onChange={(e) => setFilter(e.target.value)}>
+            <h4 className="sort-filter-label">Filter by:</h4>
+            <select className="sort-filter-element" onChange={(e) => setFilter(e.target.value)}>
                 <option value="likes">Likes</option>
                 <option value="Recent (Last week)">This week</option>
             </select>
-        </>
+        </div>
     );
 }
