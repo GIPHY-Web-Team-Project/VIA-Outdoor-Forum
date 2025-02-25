@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getUserData } from '../../services/users.service';
 import './SingleUser.css';
+import BackBtn from '../../components/BackBtn/BackBtn';
 
 export const SingleUser = () => {
     const navigate = useNavigate();
@@ -70,7 +71,7 @@ export const SingleUser = () => {
                 )}
             </div>
             <div id="btn-details-container">
-                <button className="btn-details-controler" onClick={() => navigate(-1)}>Back</button>
+                <BackBtn />
                 <button className="btn-details-controler" onClick={ handleEditUser }>Edit</button>
             </div>
         </div>

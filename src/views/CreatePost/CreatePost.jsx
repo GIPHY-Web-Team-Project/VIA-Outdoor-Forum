@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { uploadPost } from "../../services/posts.services";
 import { AppContext } from "../../store/app.context";
 import { useNavigate } from "react-router-dom";
+import BackBtn from '../../components/BackBtn/BackBtn';
 
 export default function CreatePost() {
     const { userData } = useContext(AppContext);
@@ -50,6 +51,8 @@ export default function CreatePost() {
     };
 
     return (
+    <>
+        <BackBtn />
         <div>
             <h3>Create Post</h3>
             <label htmlFor="title">Title: </label>
@@ -63,5 +66,6 @@ export default function CreatePost() {
                 navigate(`/users/${userData.uid}/posts`);
             }}>Create Post</button>
         </div>
+    </>
     )
 };

@@ -3,6 +3,7 @@ import { deleteComment, updateComment } from "../../services/comment.services";
 import LikeButton from "../LikeButton/LikeButton";
 import "./Comment.css";
 import { AppContext } from "../../store/app.context";
+import { formatDate } from '../../services/date.services';
 
 export default function Comment({ comment }) {
   const { userData } = useContext(AppContext);
@@ -60,19 +61,19 @@ export default function Comment({ comment }) {
         <>
           <p className="comment-content">{comment.content}</p>
           <p className="comment-author">Author: {comment.author}</p>
-          <p className="comment-date">Created on: {comment.createdOn}</p>
+          <p className="comment-date">Created on: {formatDate(comment.createdOn)}</p>
           <p className="comment-likes">Likes: {getLikesCount()}</p>
           <LikeButton obj={comment} typeProp='comment' /> 
         </>
       )}
 
       {userData && userData.username === comment.author && (
-        <button onClick={() => setIsEditing(true)}>Edit</button>
+        <button className='btn' onClick={() => setIsEditing(true)}>Edit</button>
       )}
 
       {userData &&
         (userData.username === comment.author || userData.isAdmin) && (
-          <button onClick={() => deleteComment(comment.id)}>Delete</button>
+          <button className='btn delete-btn' onClick={() => deleteComment(comment.id)}>Delete</button>
         )}
     </div>
   );

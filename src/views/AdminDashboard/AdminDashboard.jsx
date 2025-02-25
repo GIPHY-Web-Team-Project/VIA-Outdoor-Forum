@@ -1,15 +1,14 @@
-import React, { useContext, useState } from 'react';
-import { useEffect } from 'react';
+import React from 'react';
 import UserActions from '../../components/UserActions/UserActions';
 import PostActions from '../../components/PostActions/PostActions';
-import SortMenu from '../../components/SortMenu/SortMenu';
-import { sortPosts } from "../../services/posts.services";
 import './AdminDashboard.css';
+import BackBtn from '../../components/BackBtn/BackBtn';
 
 export default function AdminDashboard({ selectedOption }) {
 
     return (
         <div className="admin-dashboard">
+            <BackBtn />
             { selectedOption === 'users' && (
             <div id="user-list-admin" className="admin-list">
                 <UserActions />

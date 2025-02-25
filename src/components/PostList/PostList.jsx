@@ -5,6 +5,7 @@ import './PostList.css';
 import { deletePost, filterPosts, sortPosts } from '../../services/posts.services';
 import { AppContext } from '../../store/app.context';
 import SortMenu from '../SortMenu/SortMenu';
+import { formatDate } from '../../services/date.services';
 
 export default function PostList({ posts, id, setPosts, originalPosts, setOriginalPosts }) {
     const navigate = useNavigate();
@@ -19,16 +20,10 @@ export default function PostList({ posts, id, setPosts, originalPosts, setOrigin
             setOriginalPosts(originalPosts.filter(post => post.id !== postId));
         };
     };
-    
-    const formatDate = (dateString) => {
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-        return new Date(dateString).toLocaleString(undefined, options);
-    }
 
     const sortedPosts = useMemo(() => {
         return sortPosts(posts, sort);
     }, [posts, sort]);
-
     
     useEffect(() => {
         if (JSON.stringify(posts) !== JSON.stringify(sortedPosts)) {
@@ -47,7 +42,7 @@ export default function PostList({ posts, id, setPosts, originalPosts, setOrigin
 
     return (
         <div id={`forum-list-${id}`}>
-            <SortMenu posts={posts} setSort={setSort} setFilterMethod={setFilterMethod} myPosts={id} />
+            <SortMenu posts={posts} setSort={setSort} setFilterMethod={setFilterMethod} id={id} />
             <ul className="post-list">
                 {posts.map(post => (
                     <li key={post.id} className="post-item">

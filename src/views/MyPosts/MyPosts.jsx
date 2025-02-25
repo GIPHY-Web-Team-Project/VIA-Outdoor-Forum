@@ -4,6 +4,7 @@ import { getAuthorPosts } from "../../services/posts.services";
 import Loading from "../../components/Loading/Loading";
 import PostList from '../../components/PostList/PostList';
 import { MY_POSTS } from '../../common/enums';
+import BackBtn from '../../components/BackBtn/BackBtn';
 
 export default function MyPosts() {
     const [isLoading, setIsLoading] = useState(false);
@@ -37,6 +38,7 @@ export default function MyPosts() {
             <h3>My Posts</h3>
             {isLoading ? <Loading /> : (
                 <>
+                <BackBtn />
                     {user && posts.length > 0 ?
                         <PostList posts={posts} id={MY_POSTS} setPosts={setPosts} originalPosts={originalPosts} setOriginalPosts={setOriginalPosts}/> :
                         <p>No posts found.</p>}

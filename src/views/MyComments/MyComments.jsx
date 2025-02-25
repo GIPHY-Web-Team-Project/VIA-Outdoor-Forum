@@ -2,12 +2,16 @@ import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../store/app.context";
 import { getAuthorComments } from "../../services/comment.services";
 import "./MyComments.css";
+import { useNavigate } from 'react-router-dom';
+import BackBtn from '../../components/BackBtn/BackBtn';
+import { formatDate } from '../../services/date.services';
 
 export default function MyComments() {
     const { userData } = useContext(AppContext);
     const [comments, setComments] = useState([]); 
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null); 
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (userData?.username) {
@@ -35,6 +39,8 @@ export default function MyComments() {
     }
 
     return (
+    <>
+            <BackBtn />
         <div className="my-comments-container">
             <h2>My Comments</h2>
             {comments.length > 0 ? (
@@ -44,7 +50,8 @@ export default function MyComments() {
                             <h3 className="comment-title">{comment.title}</h3>
                             <p className="comment-content">{comment.content}</p>
                             <p className="comment-author">Author: {comment.author}</p>
-                            <p className="comment-date">Created on: {comment.createdOn}</p>
+                            <p className="comment-date">Created on: {formatDate(comment.createdOn)}</p>
+                            <button className='btn' onClick={() => navigate(`/posts/${comment.postId}`)}>Go to Post</button>
                         </li>
                     ))}
                 </ul>
@@ -52,5 +59,6 @@ export default function MyComments() {
                 <p>No comments found.</p> 
             )}
         </div>
+    </>
     );
 }

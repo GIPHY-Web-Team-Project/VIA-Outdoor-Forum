@@ -32,7 +32,7 @@ const toggleLike = async (id, type) => {
 
     return (
         <>
-            <button className="like-btn" onClick={() => toggleLike(obj.id, typeProp)}>
+            <button className="btn like-btn" onClick={() => toggleLike(obj.id, typeProp)}>
             {isLikedByUser() ? 'Unlike' : 'Like'}
             </button>
         </>
