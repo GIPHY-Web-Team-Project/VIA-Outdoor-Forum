@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import UserList from '../../views/UserList/UserList';
 import { useUsers } from '../../hooks/useUsers';
@@ -21,52 +21,34 @@ export default function UserActions() {
             .catch(error => console.error('Error deleting user:', error));
     };
 
-    const handleBlock = (uid) => {
+    const handleBlock = async (uid) => {
         if (!uid) {
             return;
         }
-
+    
         const user = users.find(user => user.uid === uid);
-        updateUserData(uid, { isBlocked: !user.isBlocked })
-            .then(() => {
-                setUsers(users.map(user => {
-                    if (user.uid === uid) {
-                        user.isBlocked = !user.isBlocked;
-                    }
-                    return user;
-                }));
-                setOriginalUsers(originalUsers.map(user => {
-                    if (user.uid === uid) {
-                        user.isBlocked = !user.isBlocked;
-                    }
-                    return user;
-                }));
-            })
-            .catch(error => console.error('Error updating user:', error));
+        await updateUserData(uid, { isBlocked: !user.isBlocked });
+    
+        const updatedUsers = users.map(user => 
+            user.uid === uid ? { ...user, isBlocked: !user.isBlocked } : user
+        );
+        setUsers(updatedUsers);
+        setOriginalUsers(updatedUsers);
     };
-
-    const handleAdmin = (uid) => {
+    
+    const handleAdmin = async (uid) => {
         if (!uid) {
             return;
         }
-
+    
         const user = users.find(user => user.uid === uid);
-        updateUserData(uid, { isAdmin: !user.isAdmin })
-            .then(() => {
-                setUsers(users.map(user => {
-                    if (user.uid === uid) {
-                        user.isAdmin = !user.isAdmin;
-                    }
-                    return user;
-                }));
-                setOriginalUsers(originalUsers.map(user => {
-                    if (user.uid === uid) {
-                        user.isAdmin = !user.isAdmin;
-                    }
-                    return user;
-                }));
-            })
-            .catch(error => console.error('Error updating user:', error));
+        await updateUserData(uid, { isAdmin: !user.isAdmin });
+
+        const updatedUsers = users.map(user => 
+            user.uid === uid ? { ...user, isAdmin: !user.isAdmin } : user
+        );
+        setUsers(updatedUsers); 
+        setOriginalUsers(updatedUsers);
     };
 
     return (

@@ -11,7 +11,8 @@ export const useUsers = (userData, navigate) => {
             return;
         }
 
-        const unsubscribe = getAllUsers((users) => {
+        const fetchAllUsers = async() => {
+            const unsubscribe = await getAllUsers((users) => {
             setUsers(users);
             setOriginalUsers(users);
         })
@@ -21,6 +22,9 @@ export const useUsers = (userData, navigate) => {
                 unsubscribe();
             }
         };
+        }
+
+        fetchAllUsers();
     }, [userData, navigate]);
 
     return { users, setUsers, originalUsers, setOriginalUsers };

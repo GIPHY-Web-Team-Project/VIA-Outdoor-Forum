@@ -63,8 +63,8 @@ export const deleteUserAccount = async (uid) => {
 };
 
 export const getAllUsers = async (callback) => {
-  const usersRef = ref(db, 'users');
-  const unsubscribe = onValue(usersRef, (snapshot) => {
+  const usersRef = await ref(db, 'users');
+  const unsubscribe = await onValue(usersRef, (snapshot) => {
       if (snapshot.exists()) {
           const users = Object.values(snapshot.val());
           return callback(users);

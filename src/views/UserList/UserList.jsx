@@ -17,19 +17,19 @@ export default function UserList({ users, setUsers, handleAdmin, handleBlock, ha
         if (JSON.stringify(users) !== JSON.stringify(sortedUsers)) {
             setUsers(sortedUsers);
         }
-    }, [sortedUsers, users, setUsers]);
+    }, [sortedUsers, users]);
 
     const handleProfileClick = (uid) => {
         navigate(`/users/${uid}`);
     };
 
-    const handleAdminClick = (uid) => {
-        handleAdmin(uid);
+    const handleAdminClick = async (uid) => {
+        await handleAdmin(uid);
         setUsers(users.map(user => user.uid === uid ? { ...user, isAdmin: !user.isAdmin } : user));
     }
 
-    const handleBlockClick = (uid) => {
-        handleBlock(uid);
+    const handleBlockClick = async (uid) => {
+        await handleBlock(uid);
         setUsers(users.map(user => user.uid === uid ? { ...user, isBlocked: !user.isBlocked } : user));
     }
 
@@ -70,6 +70,7 @@ export default function UserList({ users, setUsers, handleAdmin, handleBlock, ha
 
 UserList.propTypes = {
     users: PropTypes.array,
+    setUsers: PropTypes.func.isRequired,
     handleAdmin: PropTypes.func,
     handleBlock: PropTypes.func,
     handleDeleteUser: PropTypes.func,
