@@ -1,4 +1,4 @@
-import { get, push, ref, remove, update } from "firebase/database";
+import { get, orderByChild, push, query, ref, remove, update, equalTo } from "firebase/database";
 import { db } from "../config/firebase-config";
 
 export const uploadPost = async (author, title, content) => {
@@ -18,8 +18,18 @@ export const updatePost = async (id, title, content) => {
     await update(ref(db, `posts/${id}`), { title, content });
 }
 
-export const filterPostsAuthor = (posts, author) => {
-    return posts.filter(post => post.author === author);
+export const getAuthorPosts = async (author) => {
+    if (!author) {
+        throw new Error("Author is undefined");
+    }
+
+    const snapshot = await get(query(ref(db, 'posts'), orderByChild('author'), equalTo(author)));
+
+    if (!snapshot.exists()) {
+        return [];
+    }
+
+    return Object.values(snapshot.val());
 }
 
 export const getAllPosts = async () => {

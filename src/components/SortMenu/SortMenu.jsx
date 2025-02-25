@@ -26,6 +26,11 @@ export default function SortMenu({ setSort, myPosts }) {
                 <option value="comments">Most Comments</option>
                 {myPosts !== 'my-posts' && <option value="author">Author</option>}
             </select>
+            <h4>Filter by:</h4>
+            <select onChange={(e) => setFilter(e.target.value)}>
+                <option value="likes">Likes</option>
+                <option value="Recent (Last week)">This week</option>
+            </select>
         </>
     );
 }
