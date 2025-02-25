@@ -9,15 +9,12 @@ import SortMenu from '../SortMenu/SortMenu';
 export default function PostList({ posts, id, setPosts, originalPosts, setOriginalPosts }) {
     const navigate = useNavigate();
     const [ sort, setSort ] = useState('recent');
-
     const { userData } = useContext(AppContext);
 
     const handleDeleteClick = (postId) => {
         return async () => {
             await deletePost(postId);
-
             setPosts(posts.filter(post => post.id !== postId));
-
             setOriginalPosts(originalPosts.filter(post => post.id !== postId));
         };
     };
@@ -25,6 +22,11 @@ export default function PostList({ posts, id, setPosts, originalPosts, setOrigin
     const sortedPosts = useMemo(() => {
         return sortPosts(posts, sort);
     }, [posts, sort]);
+
+    const formatDate = (dateString) => {
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+        return new Date(dateString).toLocaleString(undefined, options);
+    }
 
     useEffect(() => {
         if (JSON.stringify(posts) !== JSON.stringify(sortedPosts)) {
@@ -40,15 +42,14 @@ export default function PostList({ posts, id, setPosts, originalPosts, setOrigin
                 {posts.map(post => (
                     <li key={post.id} className="post-item">
                         <p className="post-title">{post.title}</p>
+                        <label className="post-content">{post.content}</label>
                         <div className="post-meta">
-                            <span>{post.createdOn}</span>
-                            <label>|</label>
-                            <span>{post.author}</span>
+                        <span>{formatDate(post.createdOn)}</span>
+                        <span>{post.author}</span>
                         </div>
                         <button className='btn' onClick={() => navigate(`/posts/${post.id}`)}>Show More</button>
-                        {id === 'admin' || userData?.username === post.author && <button id="delete-button-post" onClick={handleDeleteClick(post.id)}>Delete</button>}
+                        {(id === 'admin' || userData?.username === post.author) && <button id="delete-button-post" onClick={handleDeleteClick(post.id)}>Delete</button>}
                     </li>
-                    
                 ))}
             </ul>
         </div>
