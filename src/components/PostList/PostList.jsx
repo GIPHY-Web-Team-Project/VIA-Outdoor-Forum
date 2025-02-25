@@ -9,7 +9,7 @@ import SortMenu from '../SortMenu/SortMenu';
 export default function PostList({ posts, id, setPosts, originalPosts, setOriginalPosts }) {
     const navigate = useNavigate();
     const [ sort, setSort ] = useState('recent');
-    const { userData } = useContext(AppContext);
+    const { user, userData } = useContext(AppContext);
 
     const handleDeleteClick = (postId) => {
         return async () => {
@@ -35,6 +35,8 @@ export default function PostList({ posts, id, setPosts, originalPosts, setOrigin
         }
     }, [sortedPosts, posts, setPosts, setOriginalPosts]);
 
+    
+
     return (
         <div id={`forum-list-${id}`}>
             <SortMenu posts={posts} setSort={setSort} myPosts={id} />
@@ -47,7 +49,13 @@ export default function PostList({ posts, id, setPosts, originalPosts, setOrigin
                         <span>{formatDate(post.createdOn)}</span>
                         <span>{post.author}</span>
                         </div>
-                        <button className='btn' onClick={() => navigate(`/posts/${post.id}`)}>Show More</button>
+                        <button className='btn' onClick={() => {
+                            if (!user) {
+                                navigate('/login');
+                            } else {
+                                navigate(`/posts/${post.id}`)
+                            }
+                        }}>Show More</button>
                         {(id === 'admin' || userData?.username === post.author) && <button id="delete-button-post" onClick={handleDeleteClick(post.id)}>Delete</button>}
                     </li>
                 ))}
