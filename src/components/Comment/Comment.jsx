@@ -6,8 +6,6 @@ import { AppContext } from "../../store/app.context";
 
 export default function Comment({ comment }) {
   const { userData } = useContext(AppContext);
-
-  
   const [isEditing, setIsEditing] = useState(false);
   const [editedComment, setEditedComment] = useState({
     content: comment.content,
@@ -64,7 +62,7 @@ export default function Comment({ comment }) {
           <p className="comment-author">Author: {comment.author}</p>
           <p className="comment-date">Created on: {comment.createdOn}</p>
           <p className="comment-likes">
-            Likes: {comment.likedBy ? comment.likedBy.length : 0}
+            Likes: {getLikesCount()}
           </p>
           <LikeButton obj={comment} typeProp="comment" /> 
         </>
