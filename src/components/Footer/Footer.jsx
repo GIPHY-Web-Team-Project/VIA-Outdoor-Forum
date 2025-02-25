@@ -14,10 +14,9 @@ export default function Footer() {
     }, []);
     return (
         <footer>
+            <p>Total Posts: {stats.totalPosts} &nbsp;&nbsp;|&nbsp;&nbsp; Total Comments: {stats.totalComments} &nbsp;&nbsp;|&nbsp;&nbsp; Total Users: {stats.totalUsers}</p>   
+            <br/> 
             <p>©2025 VIA Outdoor Forum</p>
-            <p>Total Posts: {stats.totalPosts}</p>
-            <p>Total Comments: {stats.totalComments}</p>
-            <p>Total Users: {stats.totalUsers}</p>    
         </footer>
     )
 }

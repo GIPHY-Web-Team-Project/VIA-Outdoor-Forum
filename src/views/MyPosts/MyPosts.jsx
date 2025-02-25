@@ -18,7 +18,9 @@ export default function MyPosts() {
         if (userData?.username) {
             getAuthorPosts(userData.username)
                 .then((filteredPosts) => {
+                    console.log(filteredPosts)
                     setPosts(filteredPosts)
+                    setOriginalPosts(filteredPosts)
                     setIsLoading(false);
                 })
                 .catch((error) => {
@@ -27,6 +29,7 @@ export default function MyPosts() {
                     setIsLoading(false);
                 });
         }
+
     }, [user, userData]);
 
     return (

@@ -61,6 +61,17 @@ export const sortPosts = (posts, sortBy) => {
     }
 }
 
+export const filterPosts = (posts, filterBy) => {
+    const filteredPosts = [...posts];
+
+    switch (filterBy) {
+        case 'likes':
+            return filteredPosts.filter(post => Object.keys(post.likedBy || {}).length > 0);
+        case 'Recent (Last week)':
+            return filteredPosts.filter(post => new Date(post.createdOn) > new Date(new Date().setDate(new Date().getDate() - 7)));
+    }
+}
+
 export const deletePost = async (postId) => {
     await remove(ref(db, `posts/${postId}`));
 }
