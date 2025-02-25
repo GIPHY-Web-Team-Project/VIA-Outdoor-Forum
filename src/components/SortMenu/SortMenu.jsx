@@ -1,11 +1,9 @@
 import { useContext } from "react";
 import { AppContext } from "../../store/app.context";
 
-export default function SortMenu({ setSort, myPosts }) {
+export default function SortMenu({ setSort, setFilterMethod, myPosts }) {
 
     const { user } = useContext(AppContext);
-
-    
 
     if (!user) {
         return (
@@ -27,7 +25,8 @@ export default function SortMenu({ setSort, myPosts }) {
                 {myPosts !== 'my-posts' && <option value="author">Author</option>}
             </select>
             <h4 className="sort-filter-label">Filter by:</h4>
-            <select className="sort-filter-element" onChange={(e) => setFilter(e.target.value)}>
+            <select className="sort-filter-element" onChange={(e) => setFilterMethod(e.target.value)}>
+                <option value="all">All</option>
                 <option value="likes">Likes</option>
                 <option value="Recent (Last week)">This week</option>
             </select>
