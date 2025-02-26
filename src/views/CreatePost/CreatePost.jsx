@@ -64,7 +64,7 @@ export default function CreatePost() {
             <div className='create-post-btns'>
                 <button className='create-post-btn btn' onClick={() => {
                     handleCreatePost();
-                    navigate(`/users/${userData.uid}/posts`);
+                    navigate(`/`);
                     }
                     }>Create Post
                 </button>
