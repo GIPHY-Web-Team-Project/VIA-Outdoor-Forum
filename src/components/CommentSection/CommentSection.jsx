@@ -6,6 +6,18 @@ import { useParams } from "react-router-dom";
 import Comment from '../Comment/Comment';
 import { AppContext } from '../../store/app.context';
 
+/**
+ * CommentSection component renders the comment section for a given post.
+ * It fetches and displays comments and allows users to leave new comments if they are not blocked.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Object} props.post - The post object for which comments are being displayed.
+ * @returns {JSX.Element} The rendered CommentSection component.
+ *
+ * @example
+ * <CommentSection post={post} />
+ */
 export default function CommentSection({ post }) {
     const { userData } = useContext(AppContext);
     const [comments, setComments] = useState([]);

@@ -5,6 +5,30 @@ import "./Comment.css";
 import { AppContext } from "../../store/app.context";
 import { formatDate } from '../../services/date.services';
 
+/**
+ * Comment component renders a single comment with options to edit or delete if the user is the author or an admin.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Object} props.comment - The comment data.
+ * @param {string} props.comment.id - The unique identifier of the comment.
+ * @param {string} props.comment.content - The content of the comment.
+ * @param {string} props.comment.author - The author of the comment.
+ * @param {string} props.comment.createdOn - The creation date of the comment.
+ * @param {Array|Object} props.comment.likedBy - The list or object of users who liked the comment.
+ *
+ * @example
+ * const comment = {
+ *   id: '1',
+ *   content: 'This is a comment',
+ *   author: 'user1',
+ *   createdOn: '2023-10-01',
+ *   likedBy: ['user2', 'user3']
+ * };
+ * <Comment comment={comment} />
+ *
+ * @returns {JSX.Element} The rendered Comment component.
+ */
 export default function Comment({ comment }) {
   const { userData } = useContext(AppContext);
   const [isEditing, setIsEditing] = useState(false);

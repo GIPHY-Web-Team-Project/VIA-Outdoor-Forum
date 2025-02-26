@@ -6,6 +6,17 @@ import { useNavigate } from 'react-router-dom';
 import BackBtn from '../../components/BackBtn/BackBtn';
 import { formatDate } from '../../services/date.services';
 
+/**
+ * MyComments component fetches and displays comments made by the logged-in user.
+ * 
+ * This component uses the AppContext to get the user data and fetches the comments
+ * made by the user using the getAuthorComments function. It handles loading and error
+ * states and displays the comments in a list format. Each comment includes a title,
+ * content, author, creation date, and a button to navigate to the related post.
+ * 
+ * @component
+ * @returns {JSX.Element} The rendered component.
+ */
 export default function MyComments() {
     const { userData } = useContext(AppContext);
     const [comments, setComments] = useState([]); 

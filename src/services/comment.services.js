@@ -29,6 +29,14 @@ export const getAllComments = async (postId, callback) => {
     return unsubscribe;
 }
 
+/**
+ * Sorts an array of comments based on the specified criteria.
+ *
+ * @param {Array} comments - The array of comments to be sorted.
+ * @param {string} sortBy - The criteria to sort the comments by. 
+ *                          Possible values are 'recent', 'oldest', 'likes', and 'author'.
+ * @returns {Array} - The sorted array of comments.
+ */
 export const sortComments = (comments, sortBy) => {
     switch (sortBy) {
         case 'recent':
