@@ -31,7 +31,7 @@ export default function SortMenu({ setSort, setFilterMethod, id }) {
                 <option value="likes">Likes</option>
                 <option value="Recent (Last week)">This week</option>
             </select>
-             {id === 'home' && userData && !userData.isBlocked && <button className='btn' id='create-post-btn' onClick={() => navigate("/create-post")}>Create Post</button>}
+             
         </div>
     );
 }

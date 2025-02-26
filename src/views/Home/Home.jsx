@@ -15,6 +15,7 @@ export default function Home() {
   return (
     <div className="home-container">
       <h3 className='title'>Home</h3>
+      {userData && !userData.isBlocked && <button className='btn' id='create-post-btn' onClick={() => navigate("/create-post")}>Create Post</button>}
       {isLoading ? <Loading /> : (
         <>
           {posts.length > 0 ?
