@@ -53,20 +53,3 @@
   font-size: 14px;
   color: #777;
 }
-
-.btn {
-  background-color: #4e7800;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 14px;
-  margin-top: 10px;
-}
-
-.btn:hover {
-  background-color: #3b5a00;
-  color: white;
-}

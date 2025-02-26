@@ -3,6 +3,7 @@ import { uploadPost } from "../../services/posts.services";
 import { AppContext } from "../../store/app.context";
 import { useNavigate } from "react-router-dom";
 import BackBtn from '../../components/BackBtn/BackBtn';
+import './CreatePost.css';
 
 export default function CreatePost() {
     const { userData } = useContext(AppContext);
@@ -52,19 +53,23 @@ export default function CreatePost() {
 
     return (
     <>
-        <BackBtn />
-        <div>
+        <div className="create-post-container">
             <h3>Create Post</h3>
             <label htmlFor="title">Title: </label>
-            <input value={post.title} onChange={e => handleUpdateValue('title', e.target.value)} type="text" name="title" id="title" />
+            <input value={post.title} onChange={e => handleUpdateValue('title', e.target.value)} type="text" name="title" id="create-title-input" />
             <br /> <br />
             <label htmlFor="content">Content: </label>
-            <textarea value={post.content} onChange={e => handleUpdateValue('content', e.target.value)} name="content" id="content" cols="30" rows="10"></textarea>
+            <textarea value={post.content} onChange={e => handleUpdateValue('content', e.target.value)} name="content" id="create-content-textarea" cols="30" rows="10"></textarea>
             <br /> <br />
-            <button onClick={() => {
-                handleCreatePost();
-                navigate(`/users/${userData.uid}/posts`);
-            }}>Create Post</button>
+            <div className='create-post-btns'>
+                <button className='create-post-btn btn' onClick={() => {
+                    handleCreatePost();
+                    navigate(`/users/${userData.uid}/posts`);
+                    }
+                    }>Create Post
+                </button>
+                <BackBtn />
+            </div>
         </div>
     </>
     )

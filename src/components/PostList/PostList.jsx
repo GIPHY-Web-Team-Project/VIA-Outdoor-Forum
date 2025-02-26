@@ -7,6 +7,17 @@ import { AppContext } from '../../store/app.context';
 import SortMenu from '../SortMenu/SortMenu';
 import { formatDate } from '../../services/date.services';
 
+/**
+ * Component to render a list of posts with sorting and filtering options.
+ *
+ * @component
+ * @param {Object[]} posts - Array of post objects to be displayed.
+ * @param {string} id - Identifier for the forum list.
+ * @param {Function} setPosts - Function to update the posts state.
+ * @param {Object[]} originalPosts - Original array of post objects.
+ * @param {Function} setOriginalPosts - Function to update the original posts state.
+ * @returns {JSX.Element} The rendered component.
+ */
 export default function PostList({ posts, id, setPosts, originalPosts, setOriginalPosts }) {
     const navigate = useNavigate();
     const [ filterMethod, setFilterMethod ] = useState('all');
