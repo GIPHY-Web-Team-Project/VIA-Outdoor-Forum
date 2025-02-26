@@ -3,6 +3,12 @@ import { db, auth } from '../config/firebase-config';
 import { encodeEmail } from '../utils/emailUtils';
 import { deleteUser } from 'firebase/auth';
 
+/**
+ * Retrieves a user by their email address.
+ *
+ * @param {string} email - The email address of the user to retrieve.
+ * @returns {Promise<Object|null>} A promise that resolves to the user data if found, or null if not found.
+ */
 export const getUserByEmail = async (email) => {
   const encodedEmail = encodeEmail(email);
   const snapshot = await get(ref(db, `users/${encodedEmail}`));
@@ -36,6 +42,14 @@ export const getUserData = async (uid) => {
   }
 };
 
+/**
+ * Updates the user data in the database.
+ *
+ * @param {string} uid - The unique identifier of the user.
+ * @param {Object} updatedData - The data to update for the user.
+ * @returns {Promise<void>} A promise that resolves when the user data is updated.
+ * @throws {Error} If the user is not found.
+ */
 export const updateUserData = async (uid, updatedData) => {
   const snapshot = await get(query(ref(db, 'users'), orderByChild('uid'), equalTo(uid)));
   if (snapshot.exists()) {
@@ -46,6 +60,13 @@ export const updateUserData = async (uid, updatedData) => {
   }
 };
 
+/**
+ * Deletes a user account from the database and authentication system.
+ *
+ * @param {string} uid - The unique identifier of the user to be deleted.
+ * @throws {Error} If no user is found with the given uid.
+ * @returns {Promise<void>} A promise that resolves when the user account is deleted.
+ */
 export const deleteUserAccount = async (uid) => {
   const snapshot = await get(query(ref(db, 'users'), orderByChild('uid'), equalTo(uid)));
   if (snapshot.exists()) {
@@ -62,6 +83,12 @@ export const deleteUserAccount = async (uid) => {
   }
 };
 
+/**
+ * Retrieves all users from the database and invokes the provided callback with the users data.
+ *
+ * @param {Function} callback - The callback function to be invoked with the users data.
+ * @returns {Promise<Function>} - A promise that resolves to the unsubscribe function to stop listening for changes.
+ */
 export const getAllUsers = async (callback) => {
   const usersRef = await ref(db, 'users');
   const unsubscribe = await onValue(usersRef, (snapshot) => {
@@ -75,6 +102,14 @@ export const getAllUsers = async (callback) => {
   return unsubscribe;
 };
 
+/**
+ * Sorts an array of user objects based on the specified criteria.
+ *
+ * @param {Array} users - The array of user objects to be sorted.
+ * @param {string} sortBy - The criteria to sort the users by. 
+ *                          Can be 'newest', 'oldest', or 'name'.
+ * @returns {Array} The sorted array of user objects.
+ */
 export const sortUsers = (users, sortBy) => {
   const sortedUsers = [...users];
 

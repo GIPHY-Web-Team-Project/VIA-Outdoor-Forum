@@ -23,6 +23,22 @@ export default function Register () {
     const [modalMessage, setModalMessage] = useState('');
     const navigate = useNavigate();
     
+    /**
+     * Registers a new user with the provided email and password.
+     * 
+     * This function performs the following steps:
+     * 1. Checks if the email and password are provided.
+     * 2. Logs the registration attempt.
+     * 3. Checks if a user with the provided email already exists.
+     * 4. Validates the first and last names.
+     * 5. Creates a new user with the provided email and password.
+     * 6. Creates a user handle with the provided or derived username.
+     * 7. Signs out the user and shows a success modal.
+     * 
+     * @throws {Error} If the email or password is not provided.
+     * @throws {Error} If a user with the provided email already exists.
+     * @throws {Error} If the first or last names are invalid.
+     */
     const register = () => {
         if (!user.email || !user.password) {
         return alert('Please enter email and password');

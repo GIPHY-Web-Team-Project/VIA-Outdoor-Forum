@@ -36,6 +36,12 @@ export default function Login() {
     });
   }
 
+/**
+ * Updates the user state with the given property and event value.
+ *
+ * @param {string} prop - The property of the user object to update.
+ * @returns {function} - A function that takes an event and updates the user state.
+ */
 const updateUser = (prop) => (e) => {
   setUser({
     ...user,
