@@ -36,7 +36,7 @@ export default function CommentSection({ post }) {
 
     const handleDelete = async (id) => {
         try {
-            await deleteComment(id);
+            await deleteComment(post.id, id);
         } catch (error) {
             console.error(error);
             alert('Failed to delete comment!');

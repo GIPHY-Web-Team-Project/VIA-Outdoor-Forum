@@ -57,6 +57,7 @@ export const sortPosts = (posts, sortBy) => {
         case 'author':
             return sortedPosts.sort((a, b) => a.author.localeCompare(b.author));
         case 'comments':
+            console.log(sortedPosts.sort((a, b) => Object.keys(b.comments || {}).length - Object.keys(a.comments || {}).length));
             return sortedPosts.sort((a, b) => Object.keys(b.comments || {}).length - Object.keys(a.comments || {}).length);
     }
 }

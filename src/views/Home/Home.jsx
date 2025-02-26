@@ -1,15 +1,15 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
-import { getAllPosts } from "../../services/posts.services";
 import { AppContext } from "../../store/app.context";
 import Loading from "../../components/Loading/Loading";
 import PostList from '../../components/PostList/PostList';
 import { usePosts } from '../../hooks/usePosts';
+import { HOME } from '../../common/enums';
 
 export default function Home() {
   const navigate = useNavigate();
-  const { user, userData } = useContext(AppContext);
+  const { userData } = useContext(AppContext);
   const { posts, setPosts, originalPosts, setOriginalPosts, isLoading } = usePosts(userData, navigate);
 
   return (
@@ -18,7 +18,7 @@ export default function Home() {
       {isLoading ? <Loading /> : (
         <>
           {posts.length > 0 ?
-            <PostList posts={posts} id={'home'} setPosts={setPosts} originalPosts={originalPosts} setOriginalPosts={setOriginalPosts} />:
+            <PostList posts={posts} id={HOME} setPosts={setPosts} originalPosts={originalPosts} setOriginalPosts={setOriginalPosts} />:
             <p>No posts found.</p>}
         </>
       )}

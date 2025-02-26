@@ -52,8 +52,9 @@ export const sortComments = (comments, sortBy) => {
     }
 }
 
-export const deleteComment = async (id) => {
+export const deleteComment = async (postId, id) => {
     await remove(ref(db, `comments/${id}`));
+    await remove(ref(db, `posts/${postId}/comments/${id}`));
 }
 
 export const updateComment = async (id, updatedComment) => {

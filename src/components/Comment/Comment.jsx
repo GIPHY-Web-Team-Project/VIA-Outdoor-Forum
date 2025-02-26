@@ -29,7 +29,7 @@ import { formatDate } from '../../services/date.services';
  *
  * @returns {JSX.Element} The rendered Comment component.
  */
-export default function Comment({ comment }) {
+export default function Comment({ comment, handleDelete }) {
   const { userData } = useContext(AppContext);
   const [isEditing, setIsEditing] = useState(false);
   const [editedComment, setEditedComment] = useState({
@@ -97,7 +97,7 @@ export default function Comment({ comment }) {
 
       {userData &&
         (userData.username === comment.author || userData.isAdmin) && (
-          <button className='btn delete-btn' onClick={() => deleteComment(comment.id)}>Delete</button>
+          <button className='btn delete-btn' onClick={() => handleDelete(comment.id)}>Delete</button>
         )}
     </div>
   );
