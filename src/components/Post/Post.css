@@ -1,9 +1,14 @@
 .post {
   display: flex;
-align-items: center;
-justify-content: space-between;
-width: 75vw;
-margin-bottom: 2rem;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 80vw;
+  margin: 2rem 0 2rem 0;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #4e7800;
 }
 
 .post-title {
@@ -14,12 +19,31 @@ margin-bottom: 2rem;
   border-bottom: none;
 }
 
-.post-btn {
-  font-size: 0.85rem;
-  color: #4e7800;
-  border: none;
-  background: none;
-  cursor: pointer;
+
+.post-content {
+  font-size: 1.125rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 5px;
+  max-width: 60vw;
   height: fit-content;
-  width: fit-content;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  border: 1px solid #4e7800;
+}
+
+.post-date, .post-author {
+  color: #333;
+  font-weight: bold;
+}
+
+.post-likes {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.post-btns {
+  display: flex;
+  gap: 1rem;
 }

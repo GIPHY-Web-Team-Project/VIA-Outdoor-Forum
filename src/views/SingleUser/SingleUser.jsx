@@ -43,14 +43,14 @@ export const SingleUser = () => {
             <div id="user-details-container">
                 <h1 id="details-text-form">Profile Details</h1>
                 {user.userData && (
-                    <div>
-                        <div id="profile-picture">
+                    <>
+                       
                             {user.userData.profilePicture ? (
                                 <img className="img-avatar" src={user.userData.profilePicture} alt="Avatar" />
                             ) : (
                                 <img className="img-avatar" src="../../common/images/avatar.jpg" alt="Avatar" />
                             )}
-                        </div>
+                        
                         <div id="user-details">
                             <h3 className="details-label-user">Username: </h3>
                             <label className="details-value-user">{user.userData.username}</label>
@@ -67,12 +67,12 @@ export const SingleUser = () => {
                                 </div>
                             )}
                         </div>
-                    </div>
+                    </>
                 )}
             </div>
             <div id="btn-details-container">
                 <BackBtn />
-                <button className="btn-details-controler" onClick={ handleEditUser }>Edit</button>
+                <button className="btn-details-controler btn" onClick={ handleEditUser }>Edit</button>
             </div>
         </div>
     );

@@ -36,14 +36,11 @@ export default function Home() {
 
   return (
     <div className="home-container">
-      <h3>Home</h3>
+      <h3 className='title'>Home</h3>
       {isLoading ? <Loading /> : (
         <>
-          <div>
-            {user && userData && !userData.isBlocked && <button onClick={() => navigate("/create-post")}>Create Post</button>}
-          </div>
           {posts.length > 0 ?
-            <PostList posts={posts} id={'user'} setPosts={setPosts} originalPosts={originalPosts} setOriginalPosts={setOriginalPosts} />:
+            <PostList posts={posts} id={'home'} setPosts={setPosts} originalPosts={originalPosts} setOriginalPosts={setOriginalPosts} />:
             <p>No posts found.</p>}
         </>
       )}

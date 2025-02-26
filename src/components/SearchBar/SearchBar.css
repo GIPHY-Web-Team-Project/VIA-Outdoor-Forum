@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px;
     font-size: 20px;
     position: relative;
 }
@@ -61,6 +60,8 @@ option {
 
 #sort-filter-container {
     display: flex;
+    align-items: center;
+    justify-content: flex-start;
     margin: 0.1rem;
     padding: 0.3rem;
 }

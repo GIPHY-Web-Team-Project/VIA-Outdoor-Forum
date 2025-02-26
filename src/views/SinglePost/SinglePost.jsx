@@ -24,9 +24,9 @@ export default function SinglePost() {
     }, [id]);
 
     return (
-        <>
+        <div className='single-post-container'>
             {post && <Post post={post} />}
             { post && <CommentSection post={post} />}
-        </>
+        </div>
     )
 }

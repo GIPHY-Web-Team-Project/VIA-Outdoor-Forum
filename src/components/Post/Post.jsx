@@ -14,7 +14,6 @@ export default function Post({ post }) {
   <>
     <BackBtn />
     <div className="post">
-      <div className="post-info">
         {!edit && (
           <>
             <h3 className="post-title">{post.title}</h3>
@@ -25,13 +24,11 @@ export default function Post({ post }) {
         <p className="post-author">Author: {post.author}</p>
         <p className="post-date">Created on: {formatDate(post.createdOn)}</p>
         <p className="post-likes">Likes: {post.likedBy.length}</p>
-      </div>
-
       <div className="post-btns">
-        {user && userData?.username === post.author && < button className="edit-btn" onClick={() => setEdit(true)}>Edit</button>}
         <LikeButton obj={post} typeProp='post' />
+        {user && userData?.username === post.author && <button className="edit-btn btn" onClick={() => setEdit(true)}>Edit</button>}
       </div>
-    </div >
+    </div>
   </>
   );
 }

@@ -5,6 +5,7 @@ import Loading from "../../components/Loading/Loading";
 import PostList from '../../components/PostList/PostList';
 import { MY_POSTS } from '../../common/enums';
 import BackBtn from '../../components/BackBtn/BackBtn';
+import './MyPosts.css';
 
 export default function MyPosts() {
     const [isLoading, setIsLoading] = useState(false);
@@ -34,16 +35,18 @@ export default function MyPosts() {
     }, [user, userData]);
 
     return (
-        <div>
-            <h3>My Posts</h3>
+    <>
+        <div id='my-posts-container'>
+            <BackBtn />
+            <h3 className='title'>My Posts</h3>
             {isLoading ? <Loading /> : (
                 <>
-                <BackBtn />
                     {user && posts.length > 0 ?
-                        <PostList posts={posts} id={MY_POSTS} setPosts={setPosts} originalPosts={originalPosts} setOriginalPosts={setOriginalPosts}/> :
-                        <p>No posts found.</p>}
+                    <PostList posts={posts} id={MY_POSTS} setPosts={setPosts} originalPosts={originalPosts} setOriginalPosts={setOriginalPosts}/> :
+                    <p>No posts found.</p>}
                 </>
             )}
         </div>
-    )
+    </>
+        )
 };

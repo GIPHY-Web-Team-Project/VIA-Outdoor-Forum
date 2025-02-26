@@ -16,14 +16,14 @@
     background-color: #ffffff; 
     margin-bottom: 1rem; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-    width: 95vw;
+    width: 80vw;
 }
 
 .post-item:hover {
     box-shadow: inset 0 0 0 0.3rem #4e7800;
 }
 
-.post-content {
+.post-list-content {
     display: block;
     white-space: nowrap;
     overflow: hidden;

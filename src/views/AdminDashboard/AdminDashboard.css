@@ -1,8 +1,13 @@
 .admin-dashboard {
     padding: 0;
-    width: 100%;
+    width: 80vw;
     background-color: transparent;
-    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-dashboard .btn-details-controler {
+    align-self: flex-start;
 }
 
 #admin-actions {
@@ -31,7 +36,6 @@
     background-color: #f2f2f286;
 }
 
-.admin-list {
-    width: 95%;
-    margin: 1rem auto;
+#forum-list-admin {
+    width: 80vw;
 }

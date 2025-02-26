@@ -47,7 +47,7 @@ export default function PostList({ posts, id, setPosts, originalPosts, setOrigin
                 {posts.map(post => (
                     <li key={post.id} className="post-item">
                         <p className="post-title">{post.title}</p>
-                        <label className="post-content">{post.content.slice(0, 31)}...</label>
+                        <label className="post-list-content">{post.content.slice(0, 31)}...</label>
                         <div className="post-meta">
                         <span>{formatDate(post.createdOn)}</span>
                         <span>{post.author}</span>

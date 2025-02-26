@@ -1,16 +1,18 @@
 import { useContext } from "react";
 import { AppContext } from "../../store/app.context";
+import { useNavigate } from 'react-router-dom';
 
 export default function SortMenu({ setSort, setFilterMethod, id }) {
+    const { user, userData } = useContext(AppContext);
 
-    const { user } = useContext(AppContext);
+    const navigate = useNavigate();
 
     if (!user) {
         return (
-            <>
-                <button onClick={() => setSort('recent')}>Most Recent</button>
-                <button onClick={() => setSort('comments')}>Most Commented</button>
-            </>
+            <div className='anon-btns'>
+                <button className='btn' onClick={() => setSort('recent')}>Most Recent</button>
+                <button className='btn' onClick={() => setSort('comments')}>Most Commented</button>
+            </div>
         );
     }
 
@@ -25,11 +27,11 @@ export default function SortMenu({ setSort, setFilterMethod, id }) {
                 {id !== 'my-posts' && <option value="author">Author</option>}
             </select>
             <h4 className="sort-filter-label">Filter by:</h4>
-            <select className="sort-filter-element" onChange={(e) => setFilterMethod(e.target.value)}>
-                <option value="all">All</option>
+            <select className="sort-filter-element" onChange={(e) => setFilterMethod(e.target.value)}>                    <option value="all">All</option>
                 <option value="likes">Likes</option>
                 <option value="Recent (Last week)">This week</option>
             </select>
+             {id === 'home' && userData && !userData.isBlocked && <button className='btn' id='create-post-btn' onClick={() => navigate("/create-post")}>Create Post</button>}
         </div>
     );
 }

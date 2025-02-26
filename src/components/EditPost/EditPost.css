@@ -1,0 +1,23 @@
+.edit-post {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.edit-post input,
+.edit-post textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.edit-post-btns {
+    display: flex;
+    justify-content: space-between;
+}
