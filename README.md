@@ -16,7 +16,7 @@ Each user's profile information can be edited - you can add/change your profile 
 
 This is where users can browse posts and sort/filter them. You can click "Show More" to see the full post or "Delete" to directly delete it if it is your own post.
 
-If you are logged in, you will see all posts and will be able to click "Show More". Also, you will be able to create a post from the Home page. If you aren't logged in, you will only see the 10 Most Recent or 10 Most Commented posts.
+If you are logged in, you will see all posts and will be able to click "Show More". Also, you will be able to create a post from the Home page.
 
 ![Dropdown menu](/READMEimgs/image-9.png)
 

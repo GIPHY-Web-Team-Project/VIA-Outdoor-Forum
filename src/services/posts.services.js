@@ -44,6 +44,16 @@ export const getAllPosts = async () => {
     return sortPosts(posts, 'recent');
 }
 
+export const getPostsAnonUser = async () => {
+    const snapshot = await ref(db, 'posts').limitToFirst(10).once('value');
+
+    if (!snapshot.exists()) {
+        return [];
+    }
+
+    return Object.values(snapshot.val());
+};
+
 export const sortPosts = (posts, sortBy) => {
     const sortedPosts = [...posts];
 
@@ -57,7 +67,6 @@ export const sortPosts = (posts, sortBy) => {
         case 'author':
             return sortedPosts.sort((a, b) => a.author.localeCompare(b.author));
         case 'comments':
-            console.log(sortedPosts.sort((a, b) => Object.keys(b.comments || {}).length - Object.keys(a.comments || {}).length));
             return sortedPosts.sort((a, b) => Object.keys(b.comments || {}).length - Object.keys(a.comments || {}).length);
     }
 }
