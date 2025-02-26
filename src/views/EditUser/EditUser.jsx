@@ -17,6 +17,12 @@ export const EditUser = () => {
         userData: location.state?.userData || null,
     });
 
+    /**
+     * Handles the change event for an image input.
+     * Reads the selected file and sets the avatar state with the base64-encoded image.
+     *
+     * @param {Event} event - The change event triggered by the file input.
+     */
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         if (file) {
@@ -28,6 +34,14 @@ export const EditUser = () => {
         }
     };
 
+    /**
+     * Handles input change events for form fields.
+     *
+     * @param {Object} e - The event object.
+     * @param {Object} e.target - The target element of the event.
+     * @param {string} e.target.name - The name of the input field.
+     * @param {string} e.target.value - The value of the input field.
+     */
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setUser(prevState => ({
@@ -39,6 +53,15 @@ export const EditUser = () => {
         }));
     };
 
+    /**
+     * Handles the update of user data.
+     * If an avatar is provided, it updates the user's profile picture.
+     * Then, it calls the updateUserData function with the user ID and updated data.
+     * On success, it navigates to the user's page.
+     * On failure, it logs the error to the console.
+     *
+     * @function handleUpdate
+     */
     const handleUpdate = () => {
         const updatedData = { ...user.userData };
         if (avatar) {
@@ -54,6 +77,16 @@ export const EditUser = () => {
             });
     };
 
+    /**
+     * Handles the deletion of a user account.
+     * 
+     * This function calls the deleteUserAccount function with the user's UID,
+     * logs a success message to the console, and navigates to the register page
+     * upon successful deletion. If an error occurs, it logs the error to the console.
+     * 
+     * @function handleDelete
+     * @returns {void}
+     */
     const handleDelete = () => {
         deleteUserAccount(user.userData.uid)
             .then(() => {

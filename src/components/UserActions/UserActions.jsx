@@ -11,6 +11,12 @@ export default function UserActions() {
     const navigate = useNavigate();
     const { users, setUsers, originalUsers, setOriginalUsers } = useUsers(userData, navigate);
 
+    /**
+     * Deletes a user account and updates the user lists.
+     *
+     * @param {string} uid - The unique identifier of the user to be deleted.
+     * @returns {void}
+     */
     const handleDeleteUser = (uid) => {
         deleteUserAccount(uid)
             .then(() => {
@@ -21,6 +27,12 @@ export default function UserActions() {
             .catch(error => console.error('Error deleting user:', error));
     };
 
+    /**
+     * Toggles the blocked status of a user by their UID.
+     *
+     * @param {string} uid - The unique identifier of the user to block/unblock.
+     * @returns {Promise<void>} A promise that resolves when the user's blocked status has been updated.
+     */
     const handleBlock = async (uid) => {
         if (!uid) {
             return;
@@ -36,6 +48,12 @@ export default function UserActions() {
         setOriginalUsers(updatedUsers);
     };
     
+    /**
+     * Toggles the admin status of a user.
+     *
+     * @param {string} uid - The unique identifier of the user.
+     * @returns {Promise<void>} A promise that resolves when the user data has been updated.
+     */
     const handleAdmin = async (uid) => {
         if (!uid) {
             return;

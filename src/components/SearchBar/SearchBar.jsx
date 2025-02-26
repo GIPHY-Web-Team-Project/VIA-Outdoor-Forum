@@ -7,6 +7,13 @@ export default function SearchBar({ searchId, searchOptions, setData, originalDa
         setSelectedSearch(value);
     }
 
+    /**
+     * Handles the search operation based on the selected search option and input data.
+     * Filters the original data and updates the state with the filtered data.
+     *
+     * @function handleSearchOption
+     * @returns {void}
+     */
     const handleSearchOption = () => {
         const searchData = document.getElementById(searchId).value.toLowerCase();
         if (!searchData) {
