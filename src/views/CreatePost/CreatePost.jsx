@@ -5,6 +5,14 @@ import { useNavigate } from "react-router-dom";
 import BackBtn from '../../components/BackBtn/BackBtn';
 import './CreatePost.css';
 
+/**
+ * CreatePost component allows users to create a new post.
+ * It includes form fields for the post title and content, and validates the input before submission.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered CreatePost component.
+ *
+ */
 export default function CreatePost() {
     const { userData } = useContext(AppContext);
 
@@ -15,6 +23,12 @@ export default function CreatePost() {
         content: '',
     });
 
+    /**
+     * Updates the post state with the given key-value pair.
+     *
+     * @param {string} key - The key to update in the post state.
+     * @param {string} value - The value to set for the given key.
+     */
     const handleUpdateValue = (key, value) => {
         setPost({
             ...post,
@@ -22,6 +36,10 @@ export default function CreatePost() {
         });
     }
 
+     /**
+     * Handles the creation of a new post.
+     * Validates the input fields and uploads the post if valid.
+     */
     const handleCreatePost = async () => {
         if (!post.title || !post.content) {
             alert('Please fill all fields');
