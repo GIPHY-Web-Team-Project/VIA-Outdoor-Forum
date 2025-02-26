@@ -92,17 +92,17 @@ export const EditUser = () => {
                 {user.userData && (
                     <div>
                         <div id="profile-picture-edit">
-                            <h3 className="input-label-edit-form">Profile Picture: </h3>
+                            <h5 className="input-label-edit-form">Profile Picture: </h5>
                             {user.userData.profilePicture && <img id="user-avatar-edit" src={user.userData.profilePicture} alt="Avatar" />}
                             <input type="file" onChange={handleImageChange} id="file-selector" accept="image/*"/>
                         </div>
                         <div id="user-details-edit">
                             <div className="row">
-                                <h3 className="input-label-edit-form">Username: </h3>
+                                <h5 className="input-label-edit-form">Username: </h5>
                                 <label className="input-edit-form">{user.userData.username}</label>
                             </div>
                             <div className="row">
-                                <h3 className="input-label-edit-form">Email: </h3>
+                                <h5 className="input-label-edit-form">Email: </h5>
                                 <input className="input-edit-form" 
                                     type="text" 
                                     name="firstName"
@@ -111,7 +111,7 @@ export const EditUser = () => {
                                 />
                             </div>
                             <div className="row">
-                                <h3 className="input-label-edit-form">First name: </h3>
+                                <h5 className="input-label-edit-form">First name: </h5>
                                 <input className="input-edit-form" 
                                     type="text" 
                                     name="firstName"
@@ -120,7 +120,7 @@ export const EditUser = () => {
                                 />
                             </div>
                             <div className="row">
-                                <h3 className="input-label-edit-form">Last name: </h3>
+                                <h5 className="input-label-edit-form">Last name: </h5>
                                 <input className="input-edit-form" 
                                     type="text" 
                                     name="lastName"
@@ -130,7 +130,7 @@ export const EditUser = () => {
                             </div>
                             {user.userData.isAdmin && (
                                     <div className="row">
-                                        <h3 className="input-label-edit-form">Telephone number: </h3>
+                                        <h5 className="input-label-edit-form">Telephone number: </h5>
                                         <input className="input-edit-form" 
                                             type="number" 
                                             name="telephoneNumber"
